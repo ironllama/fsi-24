@@ -27,6 +27,44 @@
         //     a. If we run out of money, game is over.
 
         // 7. Ask the player if they want to continue
+
+        let wallet = 1000;
+        let keepPlaying = true;
+
+        while (keepPlaying) {
+            let betNum = parseInt(prompt("Bet on what number (1 - 36)?"));
+            let betAmt = parseInt(prompt(`Bet how much (1 - ${wallet})?`));
+            wallet -= betAmt;
+
+            let winningNum = Math.floor(Math.random() * 37);
+            alert(`Ball is on ${winningNum}`)
+
+            let winAmt = 0;
+            if (winningNum === betNum) {
+                winAmt += betAmt * 36;
+                alert(`WINNER, WINNER! You win ${winAmt}`);
+            }
+
+            if (winningNum % 2 === betNum % 2) {
+                winAmt += betAmt * 2;
+                alert(`SAME COLOR! You win ${winAmt}`);
+            }
+
+            if (winAmt > 0) {
+                alert(`This round, you won a total of $${winAmt}!`);
+                wallet += winAmt;
+            } else {
+                alert("You lose! Better luck next time!");
+            }
+
+            if (wallet <= 0) {
+                alert(`You have no more money to bet. Come back, soon!`);
+                break;
+            } else {
+                let answer = prompt("Keep playing (y/n)?");
+                if (answer === 'n') break;
+            }
+        }
     </script>
 </body>
 

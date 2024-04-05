@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electricity</title>
+</head>
+
+<body>
+    <script>
+        // Create a function that calculates the electricity bill for a given number of WattHrs,
+        // Follow this logic:
+        // For the first tier, the first 50 WattHrs the cost is 0.50/WattHrs
+        // For the second tier, the next 100 WattHrs is 0.75/WattHrs
+        // For the third tier, the next 100 WattHrs is 1.20/WattHrs
+        // And for the fourth tier, all the WattHrs above the first 250 is 1.50/WattHrs
+        // Then add an additional 20% surcharge (bogus environmental fee) to the final cost
+        // Print out the final cost.
+        // Print out each tier's contribution to the final cost, but only if it contributes to the final cost.
+
+        function printElectricityCost(userWattHrs) {
+            const origWattHrs = userWattHrs;  // Just for the output at the end.
+
+            let totalCost = 0;  // Running total.
+
+            // if (userWattHrs >= 50) {  // Define the range for this tier.
+            let tierAmt = userWattHrs * 0.5;  // Assume that there less than the tier limit.
+            if (userWattHrs > 50) {  // But, if there is more left than the tier covers, then take the max for tier.
+                tierAmt = 50 * 0.5;
+            }
+            console.log("First tier:", tierAmt.toFixed(2));
+            totalCost += tierAmt;  // Add this tier's contribution to the total.
+            userWattHrs -= 50;  // Remove this tier's amount from the total usage.
+            // }
+
+            if (userWattHrs > 0) {
+                let tierAmt = userWattHrs * 0.75;
+                if (userWattHrs > 100) {
+                    tierAmt = 100 * 0.75;
+                }
+                console.log("Second tier:", tierAmt.toFixed(2));
+                totalCost += tierAmt;
+                userWattHrs -= 100;
+            }
+
+            if (userWattHrs > 0) {
+                let tierAmt = userWattHrs * 1.2;
+                if (userWattHrs > 100) {
+                    tierAmt = 100 * 1.2;
+                }
+                console.log("Third tier:", tierAmt.toFixed(2));
+                totalCost += tierAmt;
+                userWattHrs -= 100;
+            }
+
+            if (userWattHrs > 0) {
+                const tierAmt = userWattHrs * 1.5;
+                console.log("Fourth tier:", tierAmt.toFixed(2));
+                totalCost += tierAmt;
+            }
+
+            let surcharge = totalCost * 0.2;
+            console.log("Surcharge:", surcharge.toFixed(2));
+            totalCost += surcharge;  // 20% Surcharge.
+
+            console.log(`For ${origWattHrs}, your final cost:`, totalCost.toFixed(2)); // Automatically add a space between printed elements, by listing them.
+        }
+
+        printElectricityCost(48);
+        // First tier: 24
+        // Surcharge: 4.80
+        // For 48, your final cost: 28.80
+
+        printElectricityCost(123);
+        // First tier: 25
+        // Second tier: 54.75
+        // Surcharge: 15.95
+        // For 123, your final cost: 95.70
+
+        printElectricityCost(201);
+        // First tier added 25
+        // Second tier: 75.00
+        // Third tier: 61.20
+        // Surcharge: 32.24
+        // For 201, your final cost: 193.44
+
+        printElectricityCost(385);
+        // First tier added 25
+        // Second tier: 75.00
+        // Third tier: 120.00
+        // Fourth tier: 202.50
+        // Surcharge: 84.50
+        // For 385, your final cost: 507.00
+    </script>
+</body>
+
+</html>

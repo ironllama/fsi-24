@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Functions Redux</title>
+</head>
+
+<body>
+    <script>
+        // let interested = 4;
+        // let nth = 0;
+        // // let answer = 0;
+        // for (let i = 0; i < 1000; i++) {
+        //     if (i % 2 === 1) {
+        //         nth += 1;
+        //         if (nth === interested) {
+        //             // answer = i;
+        //             console.log(`The ${interested}th odd number is: ${i}`);
+        //             break;
+        //         }
+        //     }
+        // }
+
+        // interested = 8;
+        // nth = 0;
+        // for (let i = 0; i < 1000; i++) {
+        //     if (i % 2 === 1) {
+        //         nth += 1;
+        //         if (nth === interested) {
+        //             // answer = i;
+        //             console.log(`The ${interested}th odd number is: ${i}`);
+        //             break;
+        //         }
+        //     }
+        // }
+
+        // interested = 12;
+        // nth = 0;
+        // for (let i = 0; i < 1000; i++) {
+        //     if (i % 2 === 1) {
+        //         nth += 1;
+        //         if (nth === interested) {
+        //             // answer = i;
+        //             console.log(`The ${interested}th odd number is: ${i}`);
+        //             break;
+        //         }
+        //     }
+        // }
+        nthOdd = 1;
+
+        function getNthOdd(interested, nthOdd) {
+            // let nthOdd = 0;
+
+            nth = 0;
+            for (let i = 0; i < 1000; i++) {
+                if (i % 2 === 1) {
+                    nth += 1;
+                    if (nth === interested) {
+                        // answer = i;
+                        // console.log(`The ${interested}th odd number is: ${i}`);
+                        // return i;
+                        nthOdd = i;
+                        break;
+                    }
+                }
+            }
+
+            return nthOdd;
+        }
+        // getNthOdd(4);
+        // getNthOdd(8);
+        // getNthOdd(12);
+        console.log(getNthOdd(8) / getNthOdd(12));
+
+    </script>
+</body>
+
+</html>

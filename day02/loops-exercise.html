@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1: Write a while loop that repeats 10 times.
+        let i = 0;
+        while (i < 10) {
+            i += 1;
+            console.log("1: " + i);
+        }
+
+
+        // 2: Write a do while loop that repeats 7 times.
+        let k = 0;
+        do {
+            k += 1;
+            console.log("2: " + k);
+        } while (k < 7);
+
+
+        // 3: Write a while loop that repeats until the user enters a value via a prompt. In other words, a prompt is displayed each time the loop is executed. If the user enters something(anything!), the loop stops, and an alert displays the value entered in the prompt. If the user clicks Cancel or does not enter any text, the loop continues and displays the prompt again.
+        while (true) {
+            let userInput = prompt("3: Type something:");
+            if (userInput === null || userInput === "") break;
+        }
+
+
+        // 4: Write a for loop that repeats 3 times, asking the user to enter a number each time. Add the number that they enter each time into a total. At the end, alert the predefined range that their final total falls within.
+        // Explanation :
+        //      During 3 loops, display to the user a message and ask them to enter a number between 1 and 10.
+        //      Loop 1 : "Your number now equals <value number>"
+        //      Loops 2 and 3 : "You can add a number between 1 and 10 to this number. Choose a number to add:"
+        //      When the loops ends, display one of the following to the user, depending on their final total:
+        //          "The total was between [1-10]"
+        //          "The total was between [11-20]"
+        //          "The total was between [21-30]"
+        let total = 0;
+        for (let i = 0; i < 3; i++) {
+            total += parseInt(prompt("4: Enter a number (1-10):"));
+        }
+        if (total <= 10) console.log("4: The total was between [1-10]");
+        else if (total <= 20) console.log("4: The total was between [11-20]");
+        else console.log("4: The total was between [21-30]");
+
+
+        // 5: Display all the numbers divisible by 3 AND all the numbers divisible by 5, up to 1000.
+        //      Example: 3, 5, 6, 9, 10, etc…
+
+        // 6: Display the total amount of numbers divisible by 3 OR divisible by 5 from 1 to 1000.
+        let threeOrFive = [];
+        for (let i = 0; i <= 1000; i++) {
+            if (i % 3 === 0 || i % 5 === 0) {
+                threeOrFive.push(i);
+            }
+        }
+        console.log("5: Divisible by 3 or 5:", threeOrFive.join(", "));
+        console.log("6: Number of numbers divisible by 3 or 5:", threeOrFive.length);
+
+
+        // 7: Display all the numbers divisible by BOTH 3 AND 5 up to 1000.
+        //      Example: 15, 30, 45, 60, etc…
+        let threeAndFive = [];
+        for (let i = 0; i <= 1000; i++) {
+            if (i % 3 === 0 && i % 5 === 0) {
+                threeAndFive.push(i);
+            }
+        }
+        console.log("7: Divisible by 3 and 5:", threeAndFive.join(", "));
+
+
+        // BONUS: Display all the prime numbers up to 1000.
+        let primes = [2];
+        // for (let i = 3; i <= 10; i += 2) {
+        for (let i = 3; i <= 1000; i += 2) {
+
+            let isPrime = true;
+            for (let k = 2; k <= Math.ceil(i / 2); k++) {
+                // console.log("TEST:", i, "%", k, "=", i % k);
+                if (i % k === 0) {
+                    // console.log(i, "NOT PRIME");
+                    isPrime = false;
+                    break;
+                }
+            }
+
+            if (isPrime) primes.push(i);
+        }
+        console.log("8: Primes:", primes.join(", "));
+    </script>
+</body>
+
+</html>

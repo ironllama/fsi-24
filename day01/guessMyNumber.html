@@ -10,8 +10,10 @@
 <body>
     <script>
         // 1. Generate a random number between MIN and MAX
-        const MIN = 1;
-        const MAX = 100;
+        // const MIN = 1;
+        // const MAX = 100;
+        let MIN = 1;
+        let MAX = 100;
         const answer = Math.ceil(Math.random() * MAX);
 
         // Loop:
@@ -19,7 +21,8 @@
             // 2. PROMPT the user to guess the number between MIN and MAX
             // prompt("Guess a number between " + MIN + " and " + MAX);
             let guess = prompt(`Guess a number between ${MIN} and ${MAX}`);
-            break;
+            // break;
+            guess = parseInt(guess);
 
             // 3. IF user guess is too low
             //     a. ALERT the user that their guess is too low
@@ -38,6 +41,24 @@
             // 6. IF user guess is invalid
             //     a. ALERT a goodbye message.
             //     b. BREAK out of the loop.
+
+
+            if (guess < answer) {
+                alert('That is too low! Guess again.');
+                MIN = guess;
+            }
+            else if (guess > answer) {
+                alert('That is too high! Guess again.');
+                MAX = guess;
+            }
+            else if (guess === answer) {
+                alert('That is correct! Congrats!');
+                break;
+            }
+            else {
+                alert('Goodbye!')
+                break;
+            }
         }
     </script>
 </body>

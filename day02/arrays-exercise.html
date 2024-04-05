@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arrays</title>
+</head>
+
+<body>
+    <script src="letters.js"></script>
+    <script src="people.js"></script>
+    <script type="text/javascript">
+        // 1. Create an array and put these colors in it:
+        // fuchsia, lime, grey, magenta, teal
+        let allColors = ["fuschia", "lime", "grey", "magenta", "teal"];
+        // let outputStr = "";
+        // for (let i = 0; i < allColors.length; i++) outputStr += allColors[i] + ", ";
+        // console.log("1:", outputStr);
+        // Same as above, but with .join to make it prettier.
+        console.log("1:", allColors.join(", "));
+
+
+        // 2. Use array functions to remove the 3 last colors and add 2 new colors at the beginning of the array
+        // === Multiple pops
+        // allColors.pop();
+        // allColors.pop();
+        // allColors.pop();
+        // console.log("POST POPS:", allColors.join(", "));
+
+        // === Slicing just the portion we want to keep
+        // allColors = allColors.slice(0, 2);
+        // console.log("POST SLICE:", allColors.join(", "));
+
+        // === Splice away the portion we want to delete
+        allColors.splice(2);
+        console.log("2: POST SPLICE:", allColors.join(", "));
+
+        // === Then, add to beginning with unshift
+        // allColors.unshift("periwinkle");
+        // allColors.unshift("seafoam-green");
+        // console.log("POST UNSHIFT:", allColors.join(", "));
+
+        // allColors.unshift("periwinkle", "seafoam-green");
+        // console.log("POST UNSHIFT:", allColors.join(", "));
+
+        // === Can also add to beginning with splice (not as elegant)
+        allColors.splice(0, 0, "periwinkle", "seafoam-green");
+        console.log("2: POST SPLICE:", allColors.join(", "));
+
+
+        // 3. Reverse this array
+        // colors.reverse();
+        // console.log("REVERSED:", colors);
+
+        let colorsReversed = [];
+        for (let i = allColors.length - 1; i >= 0; i--) {
+            colorsReversed.push(allColors[i]);
+        }
+        console.log("3: REVERSED:", colorsReversed);
+
+
+        // 4. Find all vowels in the lotsOfLetters array provided in the letter.js file and extract them into another array.
+        let newVowels = [];
+        let allVowels = ['a', 'e', 'i', 'o', 'u'];
+        for (let i = 0; i < lotsOfLetters.length; i++) {
+            const currLetter = lotsOfLetters[i];
+
+            // === Just test every possibility
+            // if (currLetter === 'a'
+            //   || currLetter === 'e'
+            //   || currLetter === 'i'
+            //   || currLetter === 'o'
+            //   || currLetter === 'u'
+            // ) {
+            //   newVowels.push(currLetter);
+            // }
+
+            // === Loop through an existing array of vowels
+            // for (let k = 0; k < allVowels.length; k++) {
+            //   const currVowel = allVowels[k];
+
+            //   if (currLetter === currVowel) {
+            //     newVowels.push(currLetter);
+            //   }
+            // }
+
+            // === Same as above, but using indexOf
+            // if (allVowels.indexOf(currLetter) !== -1) {
+            //   newVowels.push(currLetter);
+            // }
+
+            // === Using array function includes
+            if (allVowels.includes(currLetter)) {
+                newVowels.push(currLetter);
+            }
+        }
+        console.log("4: VOWELS ONLY:", newVowels.join(", "));
+
+
+        // 5. Remove every "z" in the lotsOfLetters array
+        // === Pushing only things we want to keep into a new, empty array
+        let noZs = [];
+        for (let i = 0; i < lotsOfLetters.length; i++) {
+            const currLetter = lotsOfLetters[i];
+            if (currLetter !== 'z') {
+                noZs.push(currLetter);
+            }
+        }
+        console.log("5: NO Z:", noZs);
+
+        // === Using splice to remove things we don't want from original array
+        // for (let i in lotsOfLetters.length - 1) {
+        // for (let i = lotsOfLetters.length - 1; i >= 0; i--) {
+        //   if (lotsOfLetters[i] === 'z') {
+        //     lotsOfLetters.splice(i, 1);
+        //   }
+        // }
+        // console.log("POST SPLICE:", lotsOfLetters);
+
+        // === Sorting and then removing all the z's from the end.
+        lotsOfLetters.sort();
+        let posOfZ = lotsOfLetters.indexOf('z');  // Just need the first 'z'
+        lotsOfLetters.splice(posOfZ);  // Works, but changes original array.
+        console.log(lotsOfLetters);
+        // let noZs2 = lotsOfLetters.slice(0, posOfZ);  // If we don't want to change original array.
+        // console.log("NO Z2:", noZs2);
+
+
+        // 6. Display all the data in the given array in the following format:
+        // "Chris" 19
+        // "Georges" 33
+        // ...
+        const kids = [
+            ["Chris", 19],
+            ["Georges", 33],
+            ["Dustin", 29],
+            ["Wendy", 35],
+        ];
+
+        console.log("6:");
+        for (let i = 0; i < kids.length; i++) {
+            console.log(`"${kids[i][0]}" ${kids[i][1]}`);
+        }
+
+        // BONUS:
+        // In the lotsOfPeople array provided in the people.js file:
+        // - Count how many people have a name starting with the letter "E"
+        // - Count how many people are over 50 years old
+        // - Remove the people under 21 from the array
+        let startsWithE = 0;
+        let over50 = 0;
+
+        // Reverse through the array, since we're going to edit the array in place.
+        for (let x = lotsOfPeople.length - 1; x >= 0; x--) {
+            let currPerson = lotsOfPeople[x];
+
+            if (currPerson[0][0] === 'E') startsWithE += 1;  // if (currPerson[0].charAt(0) === 'E')
+
+            if (currPerson[1] > 50) over50 += 1;
+            else if (currPerson[1] < 21) {
+                lotsOfPeople.splice(x, 1);
+            }
+        }
+        console.log("BONUS: Num starts with E:", startsWithE,
+            "Num over 50:", over50,
+            "PEEPS:", lotsOfPeople
+        );
+
+    </script>
+</body>
+
+</html>

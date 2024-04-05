@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrays</title>
+    <style>
+        div,
+        main {
+            width: 10rem;
+            height: 10rem;
+        }
+
+        .blue {
+            background-color: cornflowerblue;
+        }
+
+        .red {
+            background-color: firebrick;
+        }
+
+        .yellow {
+            background-color: goldenrod;
+        }
+
+        .green {
+            background-color: olive;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="stuff"></div>
+
+    <script>
+        // Application of Shallow/deep copy.
+        let stuffElem = document.querySelector("#stuff");
+
+        function createElemFromArray(inArr) {
+            for (let i = 0; i < inArr.length; i++) {
+                let thisElem = inArr[i];
+                let [name, className] = thisElem;
+                let newElem = document.createElement(name);
+                newElem.className = className;
+
+                stuffElem.appendChild(newElem)
+            }
+        }
+
+        let values = [["div", "blue"], ["main", "red"]];
+
+        // let newValues = values.slice();
+        // let newValues = [...values];
+        // let newValues = JSON.parse(JSON.stringify(values));
+        let newValues = [];
+        for (let i = 0; i < values.length; i++) {
+            let thisElem = values[i];
+
+            let newArr = [];
+            for (let k = 0; k < thisElem.length; k++) {
+                newArr.push(thisElem[k]);
+            }
+            newValues.push(newArr);
+        }
+        newValues[0][1] = "yellow";
+        newValues[1][1] = "green";
+
+        createElemFromArray(values);
+        createElemFromArray(newValues);
+        createElemFromArray(values);
+
+        // ========== Creating arrays ==========
+        // let fruit = ["apple", "lemon", "kiwi", "watermelon"];
+
+        // let colors = [];
+        // colors.push("red");
+        // colors.push("green");
+        // colors.push("blue");
+
+        // ========== Accessing arrays ==========
+        // console.log(fruit[0]);
+        // console.log(fruit.at(0));
+
+        // console.log(fruit[fruit.length - 1]);
+        // console.log(fruit.at(-1));
+
+        // console.log(fruit[4]);
+        // console.log(fruit.at(4));
+
+        // ========== Adding to arrays ==========
+        // let lastFruit = fruit.pop();
+        // fruit.pop();  // If you don't want to do anything with the removed item.
+
+        // let firstFruit = fruit.shift();
+        // fruit.shift();  // If you don't want to do anything with the removed item.
+
+        // ========== Removing from arrays ==========
+        // fruit.push("pear")
+
+        // fruit.unshift("pear")
+
+        // ========== Copying portions of arrays ==========
+        // let newFruit = fruit.slice();
+        // console.log(newFruit);
+        // doesSomethingWithAnArray(fruit.slice())
+
+        // ========== Deleting portions of arrays ==========
+        // console.log("FRUIT BEFORE:", fruit);
+        // let stuff = fruit.splice(2, 1, "orange");
+        // console.log("FRUIT AFTER:", fruit);
+
+
+        // ========== Shallow vs Deep copies ==========
+        // let one = [1, 2, 3, 4];
+        // let two = one.slice();
+        // two[1] = 9;
+        // console.log("ONE:", one, "TWO:", two);  // As expected. No problem with single dimentional arrays.
+
+        // let one = ["ant", "bison", "camel", "duck", "elephant"];
+        // let two = one.slice();
+        // two[1] = two[1] + "ette";
+        // console.log("ONE:", one, "TWO:", two);  // As expected. No problem with single dimentional arrays.
+
+        // let three = [["r", "g", "b"], ["a", "b", "c"]];
+        // let four = three.slice();
+        // four[1].push("d");
+        // console.log("ONE:", three, "four:", four);  // Not as expected. Both original and copy changed.
+
+        // let three = [
+        //     ["r", "g", "b"],
+        //     ["a", "b", "c"]
+        // ];
+
+        // Manual Deep copy.
+        // let four = [];
+        // for (let row = 0; row < three.length; row++) {
+        //     let thisRow = three[row];
+        //     let outerArr = [];
+
+        //     for (let col = 0; col < thisRow.length; col++) {
+        //         let val = thisRow[col];
+        //         outerArr.push(val);
+        //     }
+
+        //     four.push(outerArr);
+        // }
+
+        // four[1].push("d");
+        // console.log("three:", three, "four:", four);  // Okay, as expected. Orignal and copy are different.
+
+
+        // let one = ["ant", "bison", "camel", "duck", "elephant"];
+
+        // Manual copy -- not really necessary for single dimensional array, but for example...
+        // let two = [];
+        // for (let i = 0; i < one.length; i++) {
+        //     two.push(one[i]);
+        // }
+
+        // let two = one.slice();  // Shallow
+        // let two = one.splice(0, Infinity); // Shallow copies OVER. Array one will be empty afterwards.
+        // let two = one.concat([]);  // Shallow
+        // let twoish = one;  // NOT a copy. Both point to SAME original array.
+        // twoish[0] = "anteater";
+        // console.log("ONE:", one, "TWOISH:", twoish);
+
+        // Spread operator.
+        // let two = [...one];
+        // two[0] = "anteater";
+        // console.log("ONE:", one, "TWO:", two);
+
+        // let oneTwo = [1, 2, 3, 4];
+        // let three = [...one, ...oneTwo];
+        // two[0][0] = "anteater";
+        // console.log("ONE:", one, "ONETWO:", oneTwo, "THREE:", three);
+
+        // Destructuring.
+        // console.log("Should be a camel:", one[2]);
+        // let [a, b, c, d, e] = one;
+        // console.log("Should be a camel:", c);
+
+        // Destructuring with a rest operator.
+        // // const z = one[0];
+        // // const y = one[1];
+        // // const x = one[2];
+        // // const w = one.slice(3);
+        // const [z, y, x, ...w] = one;
+        // console.log("z:", z, "y:", y, "x:", x, "w:", w);
+
+        // Marshall/unmarshall with JSON for Deep copies
+        // let three = [
+        //     ["r", "g", "b"],
+        //     ["a", "b", "c"]
+        // ];
+        // let four = three.slice();
+        // four[0][0] = "z";
+        // // console.log("three:", three, "four:", four);
+        // // console.log(JSON.stringify(three));
+        // let four = JSON.parse(JSON.stringify(three));
+        // console.log(four);
+        // four[0][0] = "z";
+        // console.log("three:", three, "four:", four);
+
+        // let three = [];
+        // three = [
+        //     [1, 2, 3],
+        //     ["r", three, "g"]
+        // ];
+        // console.log("Three:", three);
+
+    </script>
+</body>
+
+</html>
