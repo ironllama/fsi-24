@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=`">
+    <title>Functions - Again</title>
+</head>
+
+<body>
+    <script>
+        // function hello() {
+        //     console.log("Hi");
+        // }
+
+        function greet(name) {
+            let more = "";
+            if (name) {
+                more = ", " + name;
+            }
+            console.log("Hello" + more + "!")
+        }
+        // greet("Bob");
+
+        function introduce(greeting, name) {
+            greeting(name);
+            console.log("How are you?");
+
+            function sayGoodBye() {
+                console.log("GOODBYE!");
+            }
+            sayGoodBye();
+        }
+
+        // introduce(hello, "Bob");
+        introduce(function () { console.log("Hi"); }, "Bob")
+
+    </script>
+</body>
+
+</html>

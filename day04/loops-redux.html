@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loops - Part 3</title>
+</head>
+
+<body>
+    <script src="../day02/letters.js"></script>
+    <script src="../day02/people.js"></script>
+    <script>
+        let allVowels = [];
+        for (let i = 0; i < lotsOfLetters.length; i++) {
+            const letter = lotsOfLetters[i];
+            if ("aeiou".includes(letter)) {
+                allVowels.push(letter);
+            }
+        }
+        console.log("FOR STANDARD:\n", allVowels.join(", "));
+
+        allVowels = [];
+        for (const iter in lotsOfLetters) {
+            const letter = lotsOfLetters[iter];
+            if ("aeiou".includes(letter)) {
+                allVowels.push(letter);
+            }
+        }
+        console.log("FOR IN:\n", allVowels.join(", "));
+
+        allVowels = [];
+        for (const letter of lotsOfLetters) {
+            if ("aeiou".includes(letter)) {
+                allVowels.push(letter);
+            }
+        }
+        console.log("FOR OF:\n", allVowels.join(", "));
+
+
+        // DEEP COPIES
+        // Get the first 5 people out of lotsOfPeople
+        let fivePeople = [];
+        for (let i = 0; i < 5; i++) {
+            let person = lotsOfPeople[i];
+            fivePeople.push(person);
+        }
+        // let fivePeople = lotsOfPeople.slice(0, 5);
+        console.log("GIVE GUYS:", fivePeople);
+
+        // let copyOfFive = fivePeople.slice();  // Shallow copy!
+        // let copyOfFive = JSON.parse(JSON.stringify(fivePeople));  // Deep copy!
+        let copyOfFive = structuredClone(fivePeople);  // Deep copy! NEW!
+
+        // If we just change the shallow pointer, we can make it point
+        // to a new version of the sub-array. In effect, copyOfFive now
+        // shares some pointers from fivePeople and has some that point
+        // to its own unique stuff.
+        // copyOfFive[1] = ["Scotland", 99];
+
+        // If you follow the pointer "deeper", you may change something
+        // both copyOfFive AND fivePeople share.
+        // copyOfFive[1][0] = "Ireland";
+        copyOfFive[1][0] = "Scotland";
+
+        console.log("ORIG:", fivePeople[1], "COPY:", copyOfFive[1]);
+
+    </script>
+</body>
+
+</html>
