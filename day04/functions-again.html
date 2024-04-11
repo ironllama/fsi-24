@@ -13,6 +13,7 @@
         //     console.log("Hi");
         // }
 
+        // Standard function
         function greet(name) {
             let more = "";
             if (name) {
@@ -20,20 +21,239 @@
             }
             console.log("Hello" + more + "!")
         }
-        // greet("Bob");
+        // greet("Bob");  // Standard function call
 
+        // Function that accepts a function as the first parameter
         function introduce(greeting, name) {
-            greeting(name);
+            greeting(name);  // Use the function parameter -- call the function!
             console.log("How are you?");
 
+            // Inner nested function
             function sayGoodBye() {
                 console.log("GOODBYE!");
+                return "OMG"
             }
-            sayGoodBye();
+            // sayGoodBye();  // Call the inner function.
+
+            // Instead of short-circuit, early returns, can also use a variable
+            // to determine the return value and return once at end of function.
+            // let returnStr = "Something else.";
+            // if (something) returnStr = "To the future!";
+            // //more
+            // // lots of lines of code
+            // //more
+            // //more
+            // return returnStr;
+
+            return sayGoodBye;  // Returning a function, for example!
         }
 
-        // introduce(hello, "Bob");
-        introduce(function () { console.log("Hi"); }, "Bob")
+        // introduce();  // Valid call, but function errors because of undefined greetings!
+        // console.log(introduce())  // Depends on what introduce returns.
+
+        // let gb = introduce(greet, "Bob");
+        // let omgStr = gb(); // This will return OMG
+
+        // console.log("BACK:", omgStr);
+        // console.log("BACK:", gb());
+
+        // Another way of looking at the function call to introduce
+        // Just spaced out to make it readable another way
+        introduce(
+            function () {
+                console.log("Hi");
+            }
+            , "Bob"
+        );
+
+        // Standard function declaration
+        function someFunction(one) {
+            // blah
+        }
+
+        // Calling the someFunction function with an anonymous function.
+        someFunction(function () {
+            return Math.floor(Math.random() * 10);
+        })
+
+        // A named anonymous function, or named function expression
+        let anotherName = function () {
+            return 42;
+        }
+
+        // Example of recursive function
+        // 0 1 1 2 3 5 8 13 21 34
+        // let outerFib = function fib(one, two, limit) {
+        //     let newNum = one + two;
+
+        //     if (newNum < limit) {
+        //         console.log(newNum);
+        //         fib(two, newNum, limit);
+        //     }
+        // }
+        // fib(0, 1, 1000);
+
+        apple();
+        function apple() {  // Function declaration - HOISTED!
+            console.log("Crabapple!");
+        }
+
+        let pear = function () {  // Function expressions - NOT HOISTED
+            console.log("Asian pears!");
+        }
+        pear();
+        // let pear = function () {  // Function expressions - NOT HOISTED
+        //     console.log("Asian pears!");
+        // }
+
+        // Immediately Invoked Function Expression (IIFE)
+        (function () {
+            let stupidVariableName = "a";
+            let x = 1;
+            console.log("Wuuuut?");
+        })();
+
+        // Another named function expression (anonymous function)
+        let lemon = function () {
+            console.log("Oooo... bitter.");
+        }
+
+        // Arrow function version
+        let lemonArrow = () => {
+            console.log("Oooo... bitter.");
+        }
+
+        // Standard function declaration.
+        function orangeNormal() {
+            return 12 + 10;
+        }
+
+        // Arrow function version of above.
+        let orange = () => 12 + 10;
+
+        console.log(orange());
+
+        // Another arrow function
+        let randomNum = () => Math.floor(Math.random() * 10);
+        console.log("RANDOM:", randomNum())
+        console.log("RANDOM:", randomNum())
+        console.log("RANDOM:", randomNum())
+        console.log("RANDOM:", randomNum())
+
+        // Using array functions. For example: filter
+        let letters = "alkjbnrieubnalkwjnerf;lsing;oawneSrg;ouarhgokjrlgkj";
+        let letterArr = letters.split("");
+        console.log("LETTERS:", letterArr);
+
+        let allVowels = letterArr.filter(
+            // (letter) => {
+            //     if ("aeiou".includes(letter)) return true;
+            //     else return false;
+            // }
+            // Same as above.
+            // letter => {
+            //     if ("aeiou".includes(letter)) return true;
+            //     else return false;
+            // }
+            // Same as above.
+            letter => "aeiou".includes(letter.toLowerCase())
+        );
+        // let allVowels = letterArr.filter(letter => "aeiou".includes(letter));
+        console.log("VOWELS:", allVowels);
+
+        letterArr.forEach(let => console.log(let))
+        letterArr.forEach(function (let) { console.log(let); })
+
+        letterArr.sort(function (one, two) {
+            console.log("COMPARING:", one, two);
+            if (one < two) return 1;
+            else if (one > two) return -1;
+            else return 0;
+        });
+        console.log("SORTED:", letterArr.join(""));
+
+        let cars = [
+            [1974, "Honda", "Prelude"],
+            [1969, "Chevy", "Corvette"],
+            [2004, "Chrysler", "Caravan"],
+            [2018, "Tesla", "Model S"],
+            [1994, "Renault", "Coupet"],
+        ];
+        console.log(cars.sort((carOne, carTwo) => carOne[0] - carTwo[0]));
+        // console.log(cars.sort((carOne, carTwo) => carOne[1] - carTwo[1]));
+        cars.sort((car1, car2) => {
+            let car1Model = car1[1];
+            let car2Model = car2[1];
+
+            if (car1Model < car2Model) return -1;
+            else if (car1Model > car2Model) return 1;
+            else return 0;
+
+
+            // for (let i = 0; i < car1Model.length; i++) {
+            //     let letter = car1Model[i];
+            //     if (letter < car2Model[i]) return -1;
+            //     else if (letter > car2Model[i]) return 1;
+            // }
+            // return 0;
+
+            // const newArr = [car1[1], car2[1]];
+            // newArr.sort();
+            // if (car1[1] == newArr[0]) return -1;
+            // else if (car2[0] == newArr[0]) return 1;
+            // else return 0;
+        });
+        console.log("SORTED:", cars);
+
+        // for (let i = 0; i < 10; i++) {
+        //     console.log("LOOP:", i);
+        // }
+        // let models = cars.map(item => item[2]);
+        // console.log("MODELS:",)
+
+        let leapYears = cars.map(item => {
+            let returnStr = item[0] + " is ";
+            if (
+                !(
+                    (item[0] % 4 === 0 && item[0] % 100 !== 0)
+                    || item[0] % 400 == 0
+                )
+            ) {
+                returnStr += "NOT ";
+            }
+
+            return returnStr += "a leap year."
+        });
+        console.log("LEAP YEARS:", leapYears);
+
+        let totalYears = cars.reduce((acc, car) => acc + car[0], 0);
+        console.log("TOTAL:", totalYears);
+
+        let firstLetters = cars.reduce(
+            // (acc, car) => {
+            //     acc.push(car[1][0])
+            //     return acc;
+            // }
+            (acc, car) => acc.concat(car[1][0])
+            , []
+        );
+        console.log("FIRSTS:", firstLetters);
+
+        let firstMap = cars.map(car => car[1][0]);
+        console.log("FIRSTS:", firstMap);
+
+        // Function chaining, using array functions
+        let modelsReversed = cars
+            .map(car => car[2])
+            .sort()
+            .reverse()
+            .join(", ");
+        console.log("REV:", modelsReversed);
+
+        let modelsReversed2 = cars.map(car => car[2]);
+        modelsReversed2 = modelsReversed2.sort();
+        modelsReversed2 = modelsReversed2.reverse();
+        let modelsReversed2Res = modelsReversed2.join(", ");
 
     </script>
 </body>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arrays</title>
+</head>
+
+<body>
+    <script src="../day02/letters.js"></script>
+    <script src="../day02/people.js"></script>
+    <script type="text/javascript">
+        // Try the following with Array functions!
+
+        // 4. Find all vowels in the lotsOfLetters array provided in the letter.js file and extract them into another array.
+        let anotherArr = lotsOfLetters.filter(letter => "aeiou".includes(letter));
+        console.log("4.", anotherArr.join(", "));
+
+
+        // 5. Remove every "z" in the lotsOfLetters array
+        let noZs = lotsOfLetters.filter(letter => letter !== 'z');
+        console.log("5.", noZs.join(""));
+
+
+        // 6. Display all the data in the given array in the following format:
+        // "Chris" 19
+        // "Georges" 33
+        // ...
+        const kids = [
+            ["Chris", 19],
+            ["Georges", 33],
+            ["Dustin", 29],
+            ["Wendy", 35],
+        ];
+
+        console.log("6.");
+        kids.forEach(kid => console.log(`"${kid[0]}" ${kid[1]}`))
+
+
+        // BONUS:
+        // In the lotsOfPeople array provided in the people.js file:
+        // - Count how many people have a name starting with the letter "E"
+        // - Count how many people are over 50 years old
+        // - Remove the people under 21 from the array
+        const numENames = lotsOfPeople.reduce((a, person) => {
+            if (person[0][0].toLowerCase() === "e") return a + 1;
+            else return a;
+        }, 0);
+        console.log("Starts with E:", numENames);
+
+        const over50 = lotsOfPeople.filter(person => person[1] > 50).length;
+        console.log("Over 50:", over50);
+
+        const over21 = lotsOfPeople.filter(person => person[1] >= 21);
+        console.log("21 or over:", over21);
+    </script>
+</body>
+
+</html>
