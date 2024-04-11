@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Objects</title>
+</head>
+
+<body>
+    <script>
+        let fruitNames = ["apple", "lemon", "orange"];
+        let fruitArr = [
+            ["apple", "red", 12],
+            ["lemon", "yellow", 2],
+            ["orange", "orange", 8]
+        ]
+        let fruitObj = [
+            {
+                'name': "apple",
+                color: "red",
+                numVarieties: 12,
+            },
+            {
+                name: "lemon",
+                color: "yellow",
+                numVarieties: 2,
+            },
+            {
+                name: "orange",
+                color: "orange",
+                numVarieties: 8,
+            }
+        ];
+
+        let person = {
+            name: "Robert",
+            'nick-name': "Bob",
+            age: 32,
+            height: 1.7,
+            favAnimals: ["bear", "tiger"],
+            sayHello: function () {
+                console.log("Hello, " + this.name);
+            },
+            sayGoodbye: () => console.log("Goodbye!"),
+        }
+
+        console.log("NAME:", person.name);
+        console.log("NAME:", person['name']);  // Same as above.
+        let n = "name";
+        console.log("NAME:", person[n]);  // Same as above.
+        console.log("NAME:", person["na" + "me"]);  // Same as above.
+
+        // console.log("NICKNAME:", person.nick-name);  // Doesn't work.
+        console.log("NICKNAME:", person['nick-name']);  // Only way you can get to it, because of the minus
+
+        console.log("AGE:", person['age']);
+
+
+        let elephant = {};
+        elephant.type = "elephant";
+        elephant.color = "grey";
+        elephant.weight = 10000;
+
+
+        // let newPerson = person;  // No good -- just another name to the same object.
+        let newPerson = Object.assign({}, person);  // Ok, but not deep copy.
+        // let newPerson = structuredClone(person);
+        newPerson.age = 21;
+        newPerson.favAnimals.push("lions");
+        console.log("ORIG:", person, "NEW:", newPerson);
+
+        newPerson.sayHello();
+
+        let lion = {};
+        lion.type = "lion";
+        lion.color = "tan";
+        lion.weight = 500;
+
+        let bear = {
+            type: "bear",
+            color: "brown",
+            weight: 800
+        }
+
+        let tiger = {
+            type: "tiger",
+            color: "yellow",
+            weight: 700,
+        }
+
+        function Animal(type, color, weight, call) {
+            this.type = type;
+            this.color = color;
+            this.weight = weight;
+            this.call = call;
+            // this.introduce = function () {
+            //     console.log(`I am a ${this.color} ${this.type} and I weigh ${this.weight} pounds.`);
+            // }
+            // this.introduce = () => {
+            //     console.log(`I am a ${this.color} ${this.type} and I weigh ${this.weight} pounds.`);
+            // }
+        }
+
+        Animal.prototype.introduce = function () {
+            console.log(`I am a ${this.color} ${this.type} and I weigh ${this.weight} pounds.`);
+        }
+
+        // Animal.prototype.introduce = () => {
+        //     console.log(`I am a ${this.color} ${this.type} and I weigh ${this.weight} pounds.`);
+        // }
+
+        // let Animal = function (type, color, weight) {
+        //     this.type = type;
+        //     this.color = color;
+        //     this.weight = weight;
+        // }
+
+        let eagle = new Animal("eagle", "brown", 20);
+        console.log("EAGLE:", eagle);
+        let zebra = new Animal("zebra", "black and white", 500);
+
+        let cuckoo = new Animal(
+            "cuckoo",
+            "dirty",
+            1,
+            () => console.log("CUCKOOOOO!")
+        )
+        cuckoo.call();
+
+        lion.call = () => console.log("ROAAR!");
+        lion.call();
+
+        eagle.introduce();
+        cuckoo.introduce();
+        zebra.introduce();
+
+        class Vegetable {
+            constructor(name, inColor, numVar) {
+                this.name = name;
+                this.numVarieties = numVar;
+
+                this.setColor(inColor);
+
+                // this.specificFunction = () => {
+                //     console.log("Own copy of the function.");
+                // }
+            }
+
+            introduce() {
+                console.log(`I am a ${this.color} ${this.name} and I come in ${this.numVarieties} varieties.`);
+            }
+
+            static hello() {
+                // console.log("Static hello!" + this.name);  // this.name will be the class (Vegetable), not object.
+                console.log("Static hello!");
+            }
+
+            setColor(newColor) {
+                if (!newColor) newColor = "green";
+                this.color = newColor;
+            }
+        }
+
+        Vegetable.hello();
+
+        let eggplant = new Vegetable("eggplant", "deep purple", 3);
+        // eggplant.hello()  // Does not work!
+    </script>
+</body>
+
+</html>

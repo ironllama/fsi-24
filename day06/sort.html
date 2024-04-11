@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sort</title>
+</head>
+
+<body>
+    <script>
+        let fruit = [
+            ["red", "apple", 23],
+            ["orange", "orange", 12],
+            ["yellow", "lemon", 14],
+            ["yellow", "banana", 4],
+            ["green", "banana", 4]
+        ];
+        fruit.sort((a, b) => {
+            let nameFruitA = a[1];
+            let nameFruitB = b[1];
+
+            if (nameFruitA < nameFruitB) return -4;
+            else if (nameFruitA > nameFruitB) return 2;
+            // else return 0;
+            else {
+                let qtyFruitA = a[2];
+                let qtyFruitB = b[2];
+
+                if (qtyFruitA < qtyFruitB) return -7;
+                else if (qtyFruitA > qtyFruitB) return 9;
+                else return 0;
+            }
+        });
+        console.log("FRUIT:", fruit);
+    </script>
+</body>
+
+</html>
