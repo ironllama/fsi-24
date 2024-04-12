@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Objects</title>
+</head>
+
+<body>
+    <script>
+        class Dog {
+            constructor(name, breed, color, sex) {
+                this.name = name;
+                this.breed = breed;
+                this.color = color;
+                this.sex = sex;
+
+                this.noise = () => console.log("Bark?");
+            }
+
+            toString() {
+                return `Dog ${this.name} is a ${this.sex} ${this.color} ${this.breed}`;
+            }
+        }
+
+        const gabby = new Dog("Gabby", "Lab", "chocolate", "female");
+
+        const copyGabby = { ...gabby };
+        // Object.setPrototypeOf(copyGabby, gabby);
+
+        const anotherCopy = Object.assign({}, gabby);
+        // Object.setPrototypeOf(anotherCopy, copyGabby);
+
+        const thirdCopy = new Dog(...(Object.values(gabby)));
+        thirdCopy.name = "Happy";
+
+        Dog.prototype.scratch = function () {
+            console.log(`Scratch, scratch... ${this.name} has fleas!`);
+        }
+
+        console.log("GABBY:", gabby);
+        console.log("COPY:", copyGabby);
+        console.log("ANOTHER:", anotherCopy);
+        console.log("THIRD:", thirdCopy);
+
+        gabby.scratch();
+        thirdCopy.scratch();
+
+        let nappy = {
+            // name: "Nappy",  // Gets overwritten if you do this before spread.
+            ...gabby,
+            // name: "Gabby",  // Spread is just like putting all these here.
+            // breed: "Lab",
+            // color: "chocolate",
+            // sex: "female",
+            name: "Nappy",  // Overwrites values in spread.
+        }
+        console.log("NAPPY:", nappy);
+
+        // Destructuring
+        let bert = ["Bert", "brown", 1.67, 10];
+        let [name, hair, ...stuff] = bert;
+        console.log(name, hair, "LEFTOVERS:", stuff);
+
+        let alice = ["Alice", "brown", 1.67, 10];
+        [name, hair, ...stuff] = alice;
+        console.log(name, hair, "LEFTOVERS:", stuff);
+
+        for (const [key, val] of Object.entries(gabby)) console.log(`${key} -- ${val}`);
+
+
+        // Pulling out name and breed from 'gabby' as variables
+        // However, since we already have 'name' declared locally,
+        // we can 'reassign' the name to something else, like 'dogName'
+        let { name: dogName, breed } = gabby;
+        console.log("DOG:", dogName, breed);
+
+        // Can pull out specific keys while creating copies, using
+        // destructuring with a rest operator (...)
+        let { breed: newBreed, ...newGabby } = gabby;
+        console.log("NEWBREED:", newBreed);
+        console.log("NEWGABBY:", newGabby);
+
+        let flabby = { ...gabby, name: "Flabby", breed: ["Maltese", "Pom"] }
+        console.log("FLABBY:", flabby);
+    </script>
+</body>
+
+</html>

@@ -82,11 +82,21 @@
             color: "brown",
             weight: 800
         }
+        // let bear = new Animal("bear", "brown", 800);
 
         let tiger = {
             type: "tiger",
             color: "yellow",
             weight: 700,
+        }
+
+        class Animal {
+            constructor(type, color, weight, call) {
+                this.type = type;
+                this.color = color;
+                this.weight = weight;
+                this.call = call;
+            }
         }
 
         function Animal(type, color, weight, call) {
@@ -119,6 +129,7 @@
         let eagle = new Animal("eagle", "brown", 20);
         console.log("EAGLE:", eagle);
         let zebra = new Animal("zebra", "black and white", 500);
+        zebra.legs = 4;
 
         let cuckoo = new Animal(
             "cuckoo",

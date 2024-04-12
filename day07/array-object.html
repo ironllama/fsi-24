@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array - Object</title>
+</head>
+
+<body>
+    <script src="../day02/people.js"></script>
+    <script>
+        console.log("PEEPS:", lotsOfPeople);
+        // [
+        //     ['Boyd', 52],
+        //     ['Scottie', 63],
+        //     ['Elsie', 54],
+        //     ['Retta', 31],
+        // ]
+
+        const allThePeople = {}
+        lotsOfPeople.forEach(
+            person => {
+                let newName = person[0];
+
+                // If a name already exists in an object, further access to write
+                // with that key will overwrite the old value. So, we do a check
+                // here to add a "2" to the name, if the name already exists in
+                // the object. Eg. "Geovanny" appears twice in the list, so we
+                // rename the second Geovanny to "Geovanny2".
+                if (allThePeople.hasOwnProperty(newName)) {
+                    console.log("ALREADY EXISTS!:", newName);
+                    newName += "2";
+                }
+
+                // allThePeople['Rufus'] = 99;
+                allThePeople[newName] = person[1]
+            }
+        );
+        console.log("ALL PEOPLE:", allThePeople);
+        // Converted above array into a large object, like below:
+        // {
+        //     'Boyd': 52,
+        //     'Scottie': 63,
+        //     'Elsie': 54,
+        //     'Retta': 31
+        // }
+
+        // let hybrid = {
+        //     'Boyd': ["Boyd", 52],
+        //     'Scottie': ["Scottie", 63],
+        //     'Elsie': ["Elsie", 54],
+        //     'Retta': ["Retta", 31]
+        // }
+        // Object.values(hybrid);
+        // hybrid['Elsie'][1]
+
+        // Get avg age of everyone?
+        // const totalAges = lotsOfPeople.reduce((acc, person) => acc + person[1], 0);
+
+        // The same mechanism of the reducer above (with accumulator), but with a forEach function.
+        let acc = 0;
+        lotsOfPeople.forEach(person => acc += person[1]);
+        const totalAges = acc;
+
+        const avgAge = totalAges / lotsOfPeople.length;
+        console.log("AVG AGE:", totalAges, "/", lotsOfPeople.length, "=", avgAge);
+
+        // Process w/ object.
+        const allAges = Object.values(allThePeople);
+        const totalAgesObjs = allAges.reduce((acc, age) => acc + age, 0);
+        console.log("AVG AGE:", totalAgesObjs, "/", allAges.length, "=", totalAgesObjs / allAges.length);
+
+
+        // Everyone between 32 and 36, inclusive.
+        const oldPeople = lotsOfPeople
+            .filter(maybeOld => maybeOld[1] >= 32 && maybeOld[1] <= 36)
+            .map(person => person[0])
+            .join(", ");
+        console.log("OLDPEOPLE:", oldPeople);
+
+        // Process w/ object.
+        // let everyone = "";
+        const everyoneArr = [];
+        for (const maybeOld in allThePeople) {
+            // console.log("MaybeOld:", maybeOld); 
+            if (allThePeople[maybeOld] >= 32 && allThePeople[maybeOld] <= 36) {
+                // console.log("MAYBEOLDOBJ:", maybeOld)
+                // everyone += maybeOld + ", "
+                everyoneArr.push(maybeOld);
+            }
+        }
+        // console.log("OLDPEOPLEOBJ:", everyone.substring(0, everyone.length - 2));
+        console.log("OLDPEOPLEOBJ:", everyoneArr.join(", "));
+
+        const everyoneArr2 = [];
+        for (const [name, age] of Object.entries(allThePeople)) {
+            if (age >= 32 && age <= 36) {
+                everyoneArr2.push(name);
+            }
+        }
+        console.log("OLDPEOPLEOBJ2:", everyoneArr2.join(", "));
+
+        // Get the age of 'Dock'.
+        let dock = lotsOfPeople.filter((findDock) => findDock[0] === 'Dock');
+        console.log("DOCK:", dock[0][1]);
+
+        for (let i = 0; i < lotsOfPeople.length; i++) {
+            if (lotsOfPeople[i][0] === 'Dock') {
+                console.log("DOCK:", lotsOfPeople[i][1]);
+                break;
+            }
+        }
+
+        lotsOfPeople.forEach(person => {
+            // if ("Dock".includes(person[0])) {
+            if ("Dock" === person[0]) {
+                console.log("DOCK:", person[1]);
+                return;
+            }
+        });
+
+        // Process w/ Object
+        console.log("DOCK:", allThePeople['Dock']);
+        console.log("DOCK:", allThePeople.Dock);
+
+    </script>
+</body>
+
+</html>
