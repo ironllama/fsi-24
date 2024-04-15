@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regular Expressions</title>
+</head>
+
+<body>
+    <script>
+        let longStr = "A regex pattern matches a target string. The pattern is composed of a sequence of atoms. An atom is a single point within the regex pattern which it tries to match to the target string. The simplest atom is a literal, but grouping parts of the pattern to match an atom will require using ( ) as metacharacters. Metacharacters help form: atoms; quantifiers telling how many atoms (and whether it is a greedy quantifier or not); a logical OR character, which offers a set of alternatives, and a logical NOT character, which negates an atom's existence; and backreferences to refer to previous atoms of a completing pattern of atoms. A match is made, not when all the atoms of the string are matched, but rather when all the pattern atoms in the regex have matched. The idea is to make a small pattern of characters stand for a large number of possible strings, rather than compiling a large list of all the literal possibilities.";
+        console.log("LONG STR:", longStr);
+
+        const symbols = /[.,;()]+/g;
+        longStr = longStr.replace(symbols, "")
+        // longStr = longStr.replace(/\s{2,}/g, " ")
+
+        longStr = longStr.toLowerCase();
+        console.log("NO SYMBOLS, ALL LOWER:", longStr);
+
+        // const allWords = longStr.split(" ");
+        const allWords = longStr.split(/\s+/);
+
+        const countOfWords = {};
+
+        for (let word of allWords) {
+            if (countOfWords.hasOwnProperty(word)) {
+                countOfWords[word] += 1;
+            }
+            else {
+                countOfWords[word] = 1;
+            }
+        }
+
+        console.log("COUNTS:", countOfWords);
+
+        console.log("MATCH VARIANTS:", longStr.match(/match[a-z]{0,2}/g));
+        console.log("SEARCH VARIANTS:", longStr.search(/match[a-z]{0,2}/g));
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Tree</title>
+    <style>
+        .square {
+            height: 15rem;
+            width: 15rem;
+            background-color: cornflowerblue;
+            margin: auto;
+        }
+
+        .red {
+            background-color: firebrick;
+        }
+
+        .green {
+            background-color: forestgreen;
+        }
+
+        .yellow {
+            background-color: goldenrod;
+        }
+
+        .purple {
+            background-color: violet;
+        }
+
+        img {
+            width: 15rem;
+            display: block;
+            margin: 2rem auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="square"></div>
+    </div>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Hustenbonbon.JPG/440px-Hustenbonbon.JPG">
+    <p id="intro" class="start">
+        A throat lozenge (also known as a cough drop, sore throat sweet, troche, cachou, pastille or cough sweet) is a small, typically medicated tablet intended to be dissolved slowly in the mouth to temporarily stop coughs, lubricate, and soothe irritated tissues of the throat (usually due to a sore throat or strep throat), possibly from the common cold or influenza. Cough tablets have taken the name lozenge, based on their original shape, a diamond.
+        <span>
+            <a href="">This is the link inside!</a>
+        </span>
+        <input name="firstName">
+    </p>
+    <p id="ingredients">
+        Lozenges may contain benzocaine, an anaesthetic, or eucalyptus oil. Non-menthol throat lozenges generally use either zinc gluconate glycine or pectin as an oral demulcent. Several brands of throat lozenges contain dextromethorphan.
+    </p>
+    <input name="firstName">
+    <fieldset>
+        <legend>Color</legend>
+        <label>
+            Enter a color:
+            <input id="userColor">
+        </label>
+    </fieldset>
+    <script>
+        const startElem = document.querySelector(".start");
+        console.log(startElem.innerHTML);  // Extracts all the HTML inside the element.
+        console.log(startElem.textContent);  // Extracts all the HTML inside the element.
+        // startElem.textContent = "How much I overwrite.";
+        // startElem.innerHTML = "<strong>How much I overwrite.</strong>";
+        startElem.textContent = "<strong>How much I overwrite.</strong>";
+
+        const wrapperElem = document.querySelector(".wrapper");
+        wrapperElem.innerHTML = "<div class='square red'></div>";
+        // wrapperElem.textContent = "<div class='square red'></div>";
+
+        const userInput = document.querySelector("#userColor");
+        userInput.addEventListener("keypress", (evt) => {
+            if (evt.key === 'Enter') {
+                const wrapperElem = document.querySelector(".wrapper");
+                wrapperElem.innerHTML = `<div class='square ${userInput.value}'></div>`;
+            }
+        })
+    </script>
+</body>
+
+</html>
