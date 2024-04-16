@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Append</title>
+    <style>
+        .start {
+            font-size: 2rem;
+            font-weight: bold;
+            color: cornflowerblue;
+        }
+
+        .red {
+            color: rgb(250, 80, 20);
+        }
+
+        .yellow {
+            color: gold;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="startHere" class="start red yellow">Hello, this is the start.</div>
+    <div id="div1" class="start red">This is the second sentence.</div>
+    <div id="div2" class="start" style="color: pink">This is a random div.</div>
+    <script>
+        let interesting = document.querySelector("#div2");
+        interesting.style = `
+            color: darkblue;
+            font-style: italic;
+        `;
+
+        // let interesting = document.querySelector("#div1");
+
+        // console.dir(interesting);
+        // document.querySelector("#div1").style.color = "forestgreen";
+
+        // let startElem = document.querySelector("#startHere");
+        // startElem.className += "red"
+        // startElem.className = "start red";
+
+        // // Using className (string)
+        // let startCls = startElem.className;
+
+        // // Removing yellow
+        // let startOfYellow = startCls.indexOf(" yellow");
+        // // startElem.className = startCls.substring(0, startOfYellow);
+
+        // // Removing red
+        // let startOfRed = startCls.indexOf(" red");
+        // startElem.className = startCls.substring(0, startOfRed) + startCls.substring(startOfYellow);
+
+        // Using classList
+        // console.log(startElem.classList);
+
+        // Removing yellow
+        // startElem.classList.remove("yellow");
+
+        // Removing red
+        // startElem.classList.remove("red");
+
+        // let startHere = "a";  // Breaks the following line.
+        // startHere.innerHTML = "This is new text."  // Don't have to use getElementById/querySelector, but it's fragile.
+
+        // let startElem = document.querySelector("#startHere");
+        // // let startElem = document.getElementById("startHere");
+
+        // let newDiv = document.createElement("div");
+        // newDiv.id = "im_new";
+        // let p = document.createElement("p");
+        // newDiv.append("Some text", p);
+
+        // // console.log(div.childNodes);
+        // console.log(newDiv);
+
+        // // startElem.append(div);
+        // document.body.append(newDiv);
+        // // startElem.insertAdjacentElement("afterend", newDiv);
+
+        // // createAttribute()
+        // const node = document.getElementById("div1");
+        // const a = document.createAttribute("my_attrib");
+        // a.value = "newVal";
+        // node.setAttributeNode(a);
+        // console.log(node.getAttribute("my_attrib")); // "newVal"
+    </script>
+</body>
+
+</html>
