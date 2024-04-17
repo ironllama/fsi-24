@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+        #ex1 {
+            text-align: center;
+            font-size: 40px;
+        }
+
+        #ex3 {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0px;
+        }
+
+        .element {
+            display: flex;
+            width: 200px;
+            height: 200px;
+            border: 1px solid black;
+            align-items: center;
+            justify-content: center;
+        }
+
+        button {
+            padding: 10px 20px;
+        }
+
+        input[type="text"] {
+            height: 20px;
+            width: 100px;
+            margin: 10px 2px;
+        }
+
+        #capitalized {
+            display: block;
+            height: 30px;
+            width: 300px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Exercise 1 -->
+    <h2 id="ex1">Hover me!</h2>
+
+    <br />
+    <!--  Exercise 2  -->
+    <button id="ex2">Click me!</button>
+
+    <!--  Exercise 3  -->
+    <!--  Exercise 4  -->
+    <div id="ex3">
+        <div class="element">first</div>
+        <div class="element">second</div>
+        <div class="element">third</div>
+        <div class="element">fourth</div>
+        <div class="element">fifth</div>
+    </div>
+    <!-- Bonus 1 -->
+    <input type="text" id="mouse-x" readonly /><input id="mouse-y" type="text" readonly />
+
+    <!--  Bonus 2  -->
+    <input type="text" id="capitalized" placeholder="all the text should be capitalize" />
+    <script>
+        // 1. Highlight the ex1 text when hovered using js events (not css!)
+        let ex1 = document.querySelector("#ex1");
+        ex1.addEventListener("mouseenter", () => ex1.style.backgroundColor = "pink");
+        ex1.addEventListener("mouseleave", () => ex1.style.backgroundColor = "transparent");
+
+        // 2. When the button is clicked, display an alert: "The button has been clicked!"
+        document.querySelector("#ex2").addEventListener("click", () =>
+            alert("The button has been clicked!")
+        );
+
+        // 3. Using only js events, make the background color of the odd elements blue and the even elements red when the divs hovered
+        // let ex3 = document.querySelector("#ex3");
+        // let currElem = null;
+        // ex3.addEventListener("mouseover", (evt) => {
+        //     if (currElem != null) currElem.style.backgroundColor = "transparent";
+        //     if (evt.target !== ex3) {
+        //         let childIdx = Array.from(ex3.children).indexOf(evt.target);
+        //         currElem = ex3.children[childIdx];
+        //         if (childIdx % 2 === 0) evt.target.style.backgroundColor = "red";
+        //         else evt.target.style.backgroundColor = "blue";
+        //     }
+        // });
+        let allElems = document.querySelectorAll(".element");
+        allElems.forEach((e, i) => {
+            e.addEventListener("mouseenter", () => {
+                if (i % 2 === 0) e.style.backgroundColor = "red";
+                else e.style.backgroundColor = "blue";
+            });
+
+            e.addEventListener("mouseleave", () => e.style.backgroundColor = "transparent");
+        });
+
+        // 4. When divs are clicked, change the text of the div to "clicked"
+        allElems.forEach(e => {
+            let origElemVal = e.innerHTML;
+            e.innerHTML = `
+                <div style="text-align: center; position: relative; width: 100%;">
+                    <div id="orig" style="opacity: 1; transition: opacity 1s;">${origElemVal}</div>
+                    <div id="clicked" style="opacity: 0; position: absolute; top: 0; width: 100%; transition: opacity 1s;">clicked</div>
+                </div>`;
+            e.addEventListener("click", () => {
+                // let origElemVal = e.innerHTML;
+                // e.innerHTML = "clicked";
+                // setTimeout(() => e.innerHTML = origElemVal, 1000);
+
+                e.querySelector("#orig").style.opacity = 0;
+                e.querySelector("#clicked").style.opacity = 1;
+
+                setTimeout(() => {
+                    e.querySelector("#orig").style.opacity = 1;
+                    e.querySelector("#clicked").style.opacity = 0;
+                }, 1000);
+            });
+        });
+
+        // BONUS
+        // 5. In the Bonus 1 inputs, show the position of the mouse: the X axis position and the Y axis position
+        let mx = document.querySelector("#mouse-x");
+        let my = document.querySelector("#mouse-y");
+        document.body.addEventListener("mousemove", (evt) => {
+            mx.value = evt.x;
+            my.value = evt.y;
+        });
+
+        // 6. When text is added into the Bonus 2 input, capitalize it
+        let caps = document.querySelector("#capitalized");
+        caps.addEventListener("input", () => caps.value = caps.value.toUpperCase());
+
+        // 7. Using JS, don't let any number get inserted into the Bonus 2 input
+        caps.addEventListener("keydown", (evt) => {
+            if ("1234567890".indexOf(evt.key) !== -1) evt.preventDefault();
+        });
+    </script>
+</body>
+
+</html>
