@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events - Key</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: sans-serif;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input {
+            font-size: 1.2rem;
+        }
+
+        .passwordWrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 0.7rem;
+            padding: 1rem;
+            margin-top: 1rem;
+            background-color: rgb(200, 200, 200);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <label>
+        Something:
+        <input placeholder="Type here...">
+        <div class="passwordWrapper">
+            <input id="pass" placeholder="Password..." type="password">
+            <input id="confirm" placeholder="Confirm..." type="password">
+            <div style="visibility: hidden; font-size: 0.9rem; color: green">Passwords match!</div>
+        </div>
+    </label>
+    <script>
+        let inputElem = document.querySelector("input");
+        inputElem.addEventListener("input", function (evt) {
+            console.log("INPUT:", evt, "VALUE:", evt.target.value);
+            // console.log("INPUT:", evt, "VALUE:", inputElem.value);
+            // console.log("INPUT:", evt, "VALUE:", this.value);
+            console.log("INPUT!");
+        });
+        inputElem.addEventListener("change", () => console.log("CHANGE!"));
+        inputElem.addEventListener("keyup", (evt) => {
+            console.log("KEYUP!", evt.key);
+            if (event.key === "Enter") {
+                console.log("DONE!");
+            }
+        });
+        inputElem.addEventListener("keydown", (evt) => console.log("KEYDOWN!", evt.key));
+
+        let passElem = document.querySelector("#pass");
+        let confirmElem = document.querySelector("#confirm");
+        let matchElem = document.querySelector("#confirm + div");
+
+        function checkPasswords() {
+            if (passElem.value === confirmElem.value) {
+                matchElem.style.visibility = "visible";
+            }
+            else {  // For unmatches after matches.
+                matchElem.style.visibility = "hidden";
+            }
+        }
+
+        // passElem.addEventListener("input", checkPasswords);
+        // confirmElem.addEventListener("input", checkPasswords);
+        passElem.addEventListener("change", checkPasswords);
+        confirmElem.addEventListener("change", checkPasswords);
+    </script>
+</body>
+
+</html>

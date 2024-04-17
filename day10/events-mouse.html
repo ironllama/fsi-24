@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events</title>
+    <style>
+        html {
+            font-size: 12px;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            height: 100vh;
+        }
+
+        .square {
+            width: 15rem;
+            height: 15rem;
+            /* background-color: black; */
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .green {
+            background-color: forestgreen;
+        }
+
+        .blue {
+            width: 9rem;
+            height: 9rem;
+            position: relative;
+            background-color: cornflowerblue;
+        }
+
+        .red {
+            width: 4rem;
+            height: 4rem;
+            background-color: firebrick;
+            position: absolute;
+            top: -5rem;
+            z-index: 1;
+        }
+
+        .yellow {
+            background-color: goldenrod;
+        }
+
+        .purple {
+            width: 2rem;
+            height: 2rem;
+            background-color: purple;
+            position: relative;
+            right: 16rem;
+            z-index: 2;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="square green">
+        <div class="square blue">
+            <div class="square red"></div>
+        </div>
+    </div>
+    <div class="square yellow">
+        <div class="square purple"></div>
+    </div>
+    <!-- <div class="square red"></div> -->
+    <script>
+        let greenSquare = document.querySelector(".green");
+        greenSquare.addEventListener("click", function (evt) {
+            // console.log("GREEN EVENT:", evt, "TARGET:", evt.target, "CURRENT:", evt.currentTarget);
+            console.log("GREEN BOOM!");
+        });
+
+        let blueSquare = document.querySelector(".blue");
+        blueSquare.addEventListener("click", function (evt) {
+            // console.log("BLUE EVENT:", evt, "TARGET:", evt.target, "CURRENT:", evt.currentTarget);
+            console.log("BLUE BOOM!");
+            // evt.stopPropagation();  // Stops bubbling the click event.
+        });
+
+        // blueSquare.addEventListener("touchstart", function (evt) {
+        //     console.log("EVENT:", evt);
+        //     alert("BOOM!");
+        // });
+
+        let redSquare = document.querySelector(".red");
+        redSquare.addEventListener("click", function (evt) {
+            console.log("RED BOOM!");
+            // evt.stopPropagation();  // Stops bubbling the click event.
+        });
+        // redSquare.addEventListener("click", function (evt) {
+        //     console.log("BAM!");
+        // });
+
+        let yellowSquare = document.querySelector(".yellow");
+        yellowSquare.addEventListener("click", function (evt) {
+            console.log("YELLOW BOOM!");
+        });
+
+        let purpleSquare = document.querySelector(".purple");
+        purpleSquare.addEventListener("click", function (evt) {
+            console.log("PURPLE BOOM!");
+        });
+
+        greenSquare.addEventListener("mouseenter", () => {
+            console.log("ENTERED!");
+        });
+        greenSquare.addEventListener("mouseleave", () => {
+            console.log("LEFT!");
+        });
+        greenSquare.addEventListener("mouseover", () => {
+            console.log("OVER!");
+        });
+
+
+    </script>
+</body>
+
+</html>
