@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shuttle Delivery</title>
+</head>
+
+<body>
+    <script src="shuttle-delivery.js"></script>
+    <script>
+
+        function delivery(inStr) {
+            const dataArr = inStr.split(", ");
+
+            let facing = 'N';
+            let x = 0;
+            let y = 0;
+
+            dataArr.forEach(instr => {
+                const turn = instr[0];
+                const amt = parseInt(instr.slice(1));
+                // console.log("TURN:", turn, "AMT:", amt);
+
+                if (turn === 'R') {
+                    if (facing === 'N') facing = 'E';
+                    else if (facing === 'E') facing = 'S';
+                    else if (facing === 'S') facing = 'W';
+                    else facing = 'N';  // Assuming facing was 'W'
+                }
+                else {  // Assuming turn is 'L'
+                    if (facing === 'N') facing = 'W';
+                    else if (facing === 'E') facing = 'N';
+                    else if (facing === 'S') facing = 'E';
+                    else facing = 'S';
+                }
+
+                if (facing === 'W') x -= amt;
+                else if (facing === 'E') x += amt;
+                else if (facing === 'N') y += amt;
+                else y -= amt;
+            });
+
+            // console.log("END AT:", x, y);
+            console.log("DISTANCE:", Math.abs(x) + Math.abs(y));
+        }
+
+        // delivery("R2, L3");
+        // delivery("R2, R2, R2");
+        // delivery("R5, L5, R5, R3");
+        delivery(dataStr);
+    </script>
+</body>
+
+</html>
