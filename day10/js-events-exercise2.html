@@ -5,9 +5,77 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 8px;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            flex-direction: column;
+            gap: 1rem;
+            font-size: 4rem;
+            font-family: sans-serif;
+            font-weight: bold;
+        }
+
+        #board {
+            display: flex;
+            flex-wrap: wrap;
+            width: 30rem;
+        }
+
+        .square {
+            width: 10rem;
+            height: 10rem;
+            border: 1px solid black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 8rem;
+        }
+
+        button {
+            font-size: 3rem;
+            /* display: none; */
+            visibility: hidden;
+        }
+
+        #history {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 1rem;
+            height: 245px;
+            overflow: auto;
+            padding: 0 2rem;
+        }
+
+        .state {
+            font-size: 3rem;
+            border: 1px solid black;
+            padding: 0.5rem 0;
+            text-align: center;
+            border-radius: 5px;
+            width: 20rem;
+            cursor: pointer;
+            background-color: #e0e0e0;
+        }
+    </style>
 </head>
 
 <body>
+    <button>Play Again</button>
+    <div id="title">Next player: <span id="next">X</span></div>
+    <div id="board"></div>
+    <div id="history"></div>
     <script>
         // Exercise: Tic-tac-toe Game
 
@@ -21,8 +89,6 @@
 
         // 5. Upon completion of a game, announce the winner and present a "Play Again" button that resets the board for another round.
 
-        // BONUS:
-
         // 6. When hovering over a valid next move, the box background should turn a shade of green. When hoving over an invalid move, the box background should turn red.
 
         // 7. Keep a history of all moves taken and display each point in the "move history" as a link somewhere on the UI. (Eg. Move #5) The current move state will be a link in the move history called "Current".
@@ -30,6 +96,216 @@
 
         // 8. Even while viewing a past move using the move history, the user can then play another move, which creates a new future to follow (ie, resets the move history links to follow this new move into a new future),
         // or they can click back to any other move in the move history, including the future moves if they exist, including "Current" to get back to where they were before reviewing move history.
+
+
+        let boardElem = document.querySelector("#board");
+        const titleElem = document.querySelector("#title");
+        let nextElem = document.querySelector("#next");
+        const resetElem = document.querySelector("button");
+        const historyElem = document.querySelector("#history");
+
+        let turns = 0;
+        let playing = true;
+        let viewingHistoryPos = -1;
+
+        let allStates = [];
+
+        // for (let i = 0; i < 9; i++) {
+        //     let newSquare = '<div class="square"></div>';
+        //     boardElem.innerHTML = boardElem.innerHTML + newSquare;
+        //     // console.log("BOARD IS NOW:", boardElem.innerHTML);
+
+        //     // If you create these there, they will get lost with each reassignmemnt of boardElem, above.
+        //     // let createdSquares = boardElem.querySelectorAll(".square");
+        //     // let mostRecentSquare = createdSquares[createdSquares.length - 1];
+        //     // mostRecentSquare.addEventListener("click", () => console.log("BOOM:", i));
+        // }
+        // console.log("SQUARES:", squareElemArr);
+
+        // const squareElemArr = document.querySelectorAll(".square");
+        // squareElemArr.forEach(
+        //     (square, i) =>
+        //         square.addEventListener("click", () => console.log("BOOM:", i))
+        // )
+
+        // ============================== CREATE GAMEBOARD ==================================
+
+        for (let i = 0; i < 9; i++) {
+            let newSquareElem = document.createElement("div");
+            newSquareElem.id = "sq-" + i;
+            newSquareElem.className = "square";
+            boardElem.appendChild(newSquareElem);
+
+            // newSquareElem.addEventListener("click", () => console.log("BOOM:", i));
+            newSquareElem.addEventListener("click", squareHandler);  // Same as above.
+        }
+
+        // let allSquares = document.querySelectorAll(".squares");
+
+
+        // ============================== HANDLE SQUARE CLICKS ==================================
+
+        // Handles any clicks on squares.
+        function squareHandler(evt) {  // Named function for removeEventListener
+            const clickedSquare = evt.target;
+            console.log("CLICKED:", clickedSquare.id)
+
+            // if (playing) {
+            // console.log("BOOM:", i)
+            let currPlayer = "O";
+            if (turns % 2 == 0) currPlayer = "X";
+
+            clickedSquare.innerHTML = currPlayer;
+
+            clickedSquare.removeEventListener("click", squareHandler);  // Stop listening to clicks.
+
+            checkForWin();
+            checkForTie();
+
+            const newState = new GameState(playing, turns, boardElem.innerHTML);
+            if (viewingHistoryPos !== -1) {
+                allStates = allStates.slice(0, viewingHistoryPos + 1);
+                viewingHistoryPos = -1;
+            }
+            allStates.push(newState);
+            showHistory();
+
+            turns += 1;  // Advance the turns
+            nextElem.innerHTML = (turns % 2 === 0) ? "X" : "O";  // Ternary -> (condition) ? true : false
+            // }
+        }
+
+
+        // ============================== CHECKING WINS & TIES ==================================
+
+        const winningPositions = [
+            [0, 1, 2], [3, 4, 5], [6, 7, 8],  // Rows
+            [0, 3, 6], [1, 4, 7], [2, 5, 8],  // Cols
+            [0, 4, 8], [2, 4, 6]  // Diags
+        ]
+
+        function checkForWin() {
+            // let foundWinner = false;
+            let sqs = boardElem.children;
+
+            for (const combo of winningPositions) {
+                // console.log("SQS[COMBO[0]]:", combo);
+                if (
+                    // player === sqs[combo[0]].innerHTML
+                    sqs[combo[0]].innerHTML !== ""
+                    && (sqs[combo[0]].innerHTML === sqs[combo[1]].innerHTML)
+                    && (sqs[combo[0]].innerHTML === sqs[combo[2]].innerHTML)
+                    && (sqs[combo[1]].innerHTML === sqs[combo[2]].innerHTML)
+                ) {
+                    // foundWinner = true;
+                    playing = false;
+                    break;
+                }
+            }
+
+            if (!playing) {
+                titleElem.innerHTML = `${turns % 2 === 0 ? "X" : "O"} WINS!!`;
+                // titleElem.textContent = `${currPlayer} WINS!!`;
+
+                // resetElem.style.display = "block";
+                resetElem.style.visibility = "visible";
+
+                for (const child of boardElem.children) {
+                    child.removeEventListener("click", squareHandler);
+                }
+            }
+
+            // return foundWinner;
+            // return playing;
+        }
+
+        function checkForTie() {
+            if (turns === 8) {
+                titleElem.innerHTML = "CAT'S GAME!";
+            }
+        }
+
+
+        // ============================== RESET BUTTON ==================================
+        resetElem.addEventListener("click", () => {
+            for (const child of boardElem.children) {
+                child.innerHTML = "";
+                child.addEventListener("click", squareHandler);
+            }
+
+            playing = true;
+            turns = 0;
+
+            allStates = [];
+            showHistory();
+
+            title.innerHTML = 'Next Player: <span id="next">X</span>';
+            nextElem = titleElem.querySelector("#next");
+
+            resetElem.style.visibility = "hidden";
+        });
+
+        for (const child of boardElem.children) {
+            child.addEventListener("mouseenter", () => {
+                if (playing) {
+                    if (child.innerHTML === "") child.style.backgroundColor = "rgba(0, 255, 0, 0.3)";
+                    else child.style.backgroundColor = "rgba(255, 0, 0, 0.3)";
+                }
+            });
+            child.addEventListener("mouseleave", () => {
+                child.style.backgroundColor = "transparent";
+            });
+        }
+
+
+        // ============================== HISTORY STUFF ==================================
+        // BONUS:
+        class GameState {
+            constructor(playing, turns, gameboard) {
+                this.playing = playing;
+                this.turns = turns;
+                this.gameboard = gameboard;
+            }
+        }
+
+        function showHistory() {
+            historyElem.innerHTML = "";
+            allStates.forEach((state, i) => {
+                const newElem = document.createElement("div");
+                newElem.className = "state";
+                newElem.innerHTML = (i === allStates.length - 1) ? "Current" : "Turn " + (i + 1);
+                newElem.setAttribute("data-id", i);
+                historyElem.appendChild(newElem);
+
+                newElem.addEventListener("click", handleState);
+            })
+        }
+
+        function handleState(evt) {
+            // console.log("handleState: evt.target:", evt.target);
+            const clickedStateId = parseInt(evt.target.getAttribute("data-id"));
+            const thisState = allStates[clickedStateId];
+            // console.log("handleState: clickedStateId:", clickedStateId, "thisState:", thisState, boardElem);
+
+            playing = thisState.playing;
+            turns = thisState.turns;
+            boardElem.innerHTML = thisState.gameboard;
+            viewingHistoryPos = clickedStateId;
+
+            for (const child of boardElem.children) {
+                if (child.innerHTML === "") {
+                    child.addEventListener("click", squareHandler);
+                }
+            }
+            // boardElem.replaceWith(thisState.gameboard);
+            // document.body.appendChild(thisState.gameboard);
+            title.innerHTML = `Next Player: <span id="next">${(turns % 2 === 0) ? "X" : "O"}</span>`;
+            nextElem = titleElem.querySelector("#next");
+
+            checkForWin();
+
+            turns += 1;
+        }
 
     </script>
 </body>

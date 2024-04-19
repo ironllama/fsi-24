@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KB Bank Bathroom</title>
+</head>
+
+<body>
+    <script src="kbbank-bathroom.js"></script>
+    <script>
+        function getCode(str) {
+            const lines = str.trim().split("\n").map(line => line.trim());
+            // console.log("LINES:", lines);
+
+            // ====================== GRAPH ===================
+            // class Key {
+            //     config(up, right, down, left) {
+            //         this.U = up;
+            //         this.R = right;
+            //         this.D = down;
+            //         this.L = left;
+            //     }
+            // }
+
+            // const allKeys = []
+            // for (let i = 0; i < 9; i++) { allKeys.push(new Key()); }
+            // // const allKeys = new Array(9).fill(null).map(() => new Key());
+            // // allKeys[0].what = "sup?";
+            // // console.log(allKeys);
+            // allKeys[0].config(null, allKeys[1], allKeys[3], null);
+            // allKeys[1].config(null, allKeys[2], allKeys[4], allKeys[0]);
+            // allKeys[2].config(null, null, allKeys[5], allKeys[1]);
+            // allKeys[3].config(allKeys[0], allKeys[4], allKeys[6], null);
+            // allKeys[4].config(allKeys[1], allKeys[5], allKeys[7], allKeys[3]);
+            // allKeys[5].config(allKeys[2], null, allKeys[8], allKeys[4]);
+            // allKeys[6].config(allKeys[3], allKeys[7], null, null);
+            // allKeys[7].config(allKeys[4], allKeys[8], null, allKeys[6]);
+            // allKeys[8].config(allKeys[5], null, null, allKeys[7]);
+
+            // let combo = "";
+            // let currPos = allKeys[4];
+            // for (const line of lines) {
+            //     for (const letter of line) {  // Process a line
+            //         const nextPos = currPos[letter];
+            //         if (nextPos !== null) currPos = nextPos;
+            //         // console.log("LINE:", line, "CHAR:", letter, allKeys.indexOf(currPos));
+            //     }
+
+            //     // Store where we ended up. allkeys is 0-based, buttons are 1-based
+            //     combo += allKeys.indexOf(currPos) + 1;
+            // }
+
+            // ================== CARTESIAN PLANE ==================
+
+            const limit = 2;  // 0-indexed
+
+            let currPos = [1, 1]
+            let combo = "";
+
+            for (const line of lines) {
+                for (const letter of line) {
+                    switch (letter) {
+                        case "U":
+                            if (currPos[1] !== 0) currPos[1] -= 1;
+                            break;
+                        case "R":
+                            if (currPos[0] !== limit) currPos[0] += 1;
+                            break;
+                        case "D":
+                            if (currPos[1] !== limit) currPos[1] += 1;
+                            break;
+                        case "L":
+                            if (currPos[0] !== 0) currPos[0] -= 1;
+                            break;
+                    }
+                    // console.log("LINE:", line, "LETTER:", letter, "CURRPOS", currPos);
+                }
+                combo += currPos[0] + (currPos[1] * 3) + 1;
+            }
+
+            console.log("COMBO:", combo);
+        }
+        // getCode(`
+        //     ULL
+        //     RRDDD
+        //     LURDL
+        //     UUUUD
+        // `);
+        getCode(dataStr);
+    </script>
+</body>
+
+</html>
