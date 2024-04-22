@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dog Pics</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Titan+One&display=swap');
+
+        * {
+            box-sizing: border-box;
+        }
+
+        :root {
+            --image-size: 30rem;
+        }
+
+        body {
+            background-color: navy;
+            margin: 0;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            font-family: sans-serif;
+        }
+
+        svg {
+            position: absolute;
+            top: -5rem;
+            left: 30rem;
+            transform: translate-x(100), scale(1.25);
+        }
+
+        svg path {
+            fill: orangered;
+        }
+
+        .content {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            width: 100%;
+            height: 100%;
+            padding: 5rem;
+        }
+
+        .content>div {
+            display: flex;
+            align-items: center;
+            width: 80%;
+            height: 80%;
+            padding: 4rem;
+        }
+
+        #left {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #left h1 {
+            font-family: "Titan One", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+            color: white;
+            font-size: 5rem;
+            margin-bottom: 1.25rem;
+        }
+
+        button {
+            padding: 0.75rem 2rem;
+            min-width: 15rem;
+            background-color: orangered;
+            color: white;
+            font-weight: bold;
+            font-size: 1.3rem;
+            border: none;
+            border-radius: 10rem;
+            cursor: pointer;
+        }
+
+        #right {
+            display: flex;
+            /* justify-content: center; */
+            align-items: center;
+        }
+
+        .imgWrapper {
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            overflow: hidden;
+            height: var(--image-size);
+            width: var(--image-size);
+        }
+
+        img {
+            min-height: var(--image-size);
+            min-width: var(--image-size);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="background">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#FA4D56" d="M21.2,-30.6C27.1,-20.2,31.5,-13.3,37.8,-2.9C44.1,7.4,52.4,21.2,47.3,24.8C42.3,28.5,24,22,12,21.4C0,20.7,-5.6,25.9,-11,25.8C-16.4,25.8,-21.6,20.6,-32.8,13.1C-44.1,5.6,-61.5,-4.1,-63.8,-14.7C-66.1,-25.3,-53.2,-36.7,-40.1,-45.9C-26.9,-55,-13.5,-61.9,-2.9,-58.4C7.6,-54.9,15.2,-41,21.2,-30.6Z" transform="translate(100 100)" />
+        </svg>
+    </div>
+    <div class="content">
+        <div id="left">
+            <h1>Cute dogs</h1>
+            <button>random cute dog</button>
+        </div>
+        <div id="right">
+            <div class="imgWrapper">
+                <img src="">
+            </div>
+        </div>
+    </div>
+    <script>
+        const imgElem = document.querySelector(".imgWrapper img");
+        const buttonElem = document.querySelector("button");
+
+        function getDog() {
+            // AJAX - Asynchronious Javascript and XML
+            // XHR - XML HTTP Request
+            const xhrStuff = new XMLHttpRequest();
+            xhrStuff.open("GET", "https://dog.ceo/api/breeds/image/random");  // Config, where to go get stuff
+            xhrStuff.addEventListener("load", () => {  // What to do when stuff is received.
+                // console.log(xhrStuff.response);
+                console.log(xhrStuff.responseText);
+
+                const responseObj = JSON.parse(xhrStuff.responseText);  // Turn JSON string into object.
+                console.log("RESPONSEOBJ:", responseObj);
+                imgElem.src = responseObj.message;
+            });
+            // xhr.open("GET", "https://dog.ceo/api/breeds/image/random");
+            xhrStuff.send();
+
+            imgElem.src = "";  // Blank out while waiting for response to the xhr request.
+        }
+        getDog(); // Call the function.
+
+        buttonElem.addEventListener("click", getDog);  // The getDog function itself is also the event handling function.
+
+        // imgElem.addEventListener("load", () => {  // Doesn't really do what we want.
+        //     imgElem.src = "";
+        // })
+    </script>
+</body>
+
+</html>
