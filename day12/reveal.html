@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reveal</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 2rem;
+            min-height: 100vh;
+            font-family: sans-serif;
+            font-size: 1.5rem;
+        }
+
+        .answer {
+            /* display: none; */
+            visibility: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="question"></div>
+    <div class="answer"></div>
+    <input id="searchStuff">
+
+    <script>
+        const qElem = document.querySelector(".question");
+        const aElem = document.querySelector(".answer");
+
+        const searchElem = document.querySelector("#searchStuff");
+        searchElem.addEventListener("input", () => {
+            console.log("SEARCH INPUT:", searchElem.value);
+        })
+        searchElem.addEventListener("keyup", () => {
+            console.log("SEARCH KEY:", searchElem.value);
+        })
+
+        function getQA() {
+            const newQuestion = "Hello?";
+            const newAnswer = "Greetings, earthling.";
+
+            qElem.innerHTML = newQuestion;
+            aElem.innerHTML = newAnswer;
+        }
+
+        getQA();
+
+        document.body.addEventListener("click", () => {
+            // aElem.style.display = "block";
+            aElem.style.visibility = "visible";
+        })
+
+    </script>
+</body>
+
+</html>

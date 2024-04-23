@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            min-height: 100vh;
+        }
+
+        .square {
+            width: 10rem;
+            height: 10rem;
+            border-radius: 10px;
+            background-color: cornflowerblue;
+        }
+
+        .red {
+            background-color: firebrick;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="square" onclick="handleInlineClick()"></div>
+    <div class="square red"></div>
+    <script>
+        const blueSquare = document.querySelector("div");
+        blueSquare.addEventListener("click", handleClick);
+        blueSquare.addEventListener("click", () => {
+            console.log("SECOND EVENT CLICK!");
+        })
+
+        function handleClick(event) {
+            console.log("EVENT CLICK!", event);
+            // anotherFunction(one, two);
+        }
+
+        function handleInlineClick() {
+            console.log("INLINE CLICK!");
+        }
+
+        function handleSecondInlineClick() {
+            console.log("SECOND INLINE CLICK!");
+        }
+
+        const redSquare = document.querySelector(".red");
+        redSquare.onclick = handleInlineClick;
+        redSquare.onclick = handleSecondInlineClick;
+        redSquare.id = "whatever";
+
+        // setTimeout(() => {
+        //     console.log("GLOBAL EVENT:", window.event);
+        // }, 2000);
+    </script>
+</body>
+
+</html>
