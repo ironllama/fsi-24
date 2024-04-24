@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dogs Carousel</title>
+    <link rel="stylesheet" href="carousel/styles.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 2rem;
+            min-height: 100vh;
+            font-family: sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="corgis"></div>
+    <div id="hounds"></div>
+    <script src="carousel/carousel.js"></script>
+    <script>
+        // https://dog.ceo/api/breed/corgi/images
+        const xhrCorgi = new XMLHttpRequest();
+        xhrCorgi.open("GET", "https://dog.ceo/api/breed/corgi/images");
+        xhrCorgi.addEventListener("load", () => {
+            const allDogs = JSON.parse(xhrCorgi.responseText);
+
+            const dogImgs = allDogs.message.map((dogImg, i) => {
+                return {
+                    caption: "Dog #" + (i + 1),
+                    url: dogImg
+                };
+            });
+
+            createCarousel("corgis", dogImgs);
+        });
+        xhrCorgi.send();
+
+        const xhrHound = new XMLHttpRequest();
+        xhrHound.open("GET", "https://dog.ceo/api/breed/hound/images");
+        xhrHound.addEventListener("load", () => {
+            const allDogs = JSON.parse(xhrHound.responseText);
+
+            const dogImgs = allDogs.message.map((dogImg, i) => {
+                return {
+                    caption: "Dog #" + (i + 1),
+                    url: dogImg
+                };
+            });
+
+            createCarousel("hounds", dogImgs);
+        });
+        xhrHound.send();
+    </script>
+</body>
+
+</html>

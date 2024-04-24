@@ -1,0 +1,63 @@
+.carousel,
+.carousel * {
+    box-sizing: border-box;
+}
+
+.carousel {
+    width: 60rem;
+    height: 15rem;
+    /* display: flex; */
+    overflow: hidden;
+    /* overflow-x: scroll; */
+    position: relative;
+}
+
+.carousel .arrow {
+    position: absolute;
+    top: 5.5rem;
+    z-index: 99;
+    width: 2rem;
+    fill: rgba(255, 255, 255, 0.6);
+    font-size: 3rem;
+    color: white;
+    filter: drop-shadow(0px 0px 4px black);
+}
+
+.carousel .arrow.left {
+    left: 0.25rem;
+}
+
+.carousel .arrow.right {
+    right: 0.25rem;
+}
+
+.carousel .slider {
+    width: 100rem;
+    height: 100%;
+    white-space: nowrap;
+    transform: translateX(-20rem);
+    position: relative;
+}
+
+.carousel .horse {
+    display: inline-block;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 20rem;
+    height: 100%;
+    overflow: hidden;
+    padding: 1rem;
+    color: white;
+    position: absolute;
+    transition: left 0.5s;
+
+    /* The following is only needed for inline elements added manually in
+    source to get rid of newline/tab spaces between elements. */
+    /* margin-right: -0.25rem; */
+}
+
+.carousel .horse h3 {
+    margin: 10rem 0 0 1rem;
+    text-shadow: 0px 0px 4px black;
+}

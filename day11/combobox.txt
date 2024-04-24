@@ -1,0 +1,38 @@
+Create a combo box input (https://en.wikipedia.org/wiki/Combo_box) using JS,
+without using third-party libraries. The combo box typically comprises of
+a text input and a list of matches. Also add a submit button beside the
+combo box input. There should be an area under the combo box to display more
+details about the combo box's matched selection.
+
+It will be used with a list of US universities pulled from a public API:
+(http://universities.hipolabs.com/search?country=United+States)
+
+The combo box should do the following:
+
+- Wait until the user types at least 3 characters before starting to search
+   through schools to display matches.
+- Display matches under the editable text input. The list of matches should
+   only appear when there are matches to show and should have a maximum
+   display size and show a scrollbar if the list gets too large to show in
+   your allotted space.
+- Clicking on a match in the list of matches will auto fill/replace the
+   text in the text input with the match that was clicked. This should also
+   remove or hide the list of matches.
+- Clicking on the submit button displays the school details in an area under
+   the combo box.
+- Only connect to the API to get the list of schools once and hold the list
+   locally, so you don't create too much network traffic and UI lag.
+
+
+BONUS: Have the combo box support key presses as follows:
+- The user should be able to navigate the matches list with the up and down
+   arrows. Show the current position in the list while navigating this way
+   by highlighting the list position. (eg. special background color, font
+   size, font weight, etc.)
+- Hitting the enter key while navigating the matches list will auto
+   fill/replace the text in the text input with the highlighted match. This
+   should also remove or hide the list of matches.
+- If the matches list is showing while the focus is on the text input, a down
+   arrow key will allow the user to start navigating the matches list.
+- If the user hits the enter key while the focus is on the text input, the
+   UI will behave as if the user submitted the text.

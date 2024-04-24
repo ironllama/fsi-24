@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cat Carousel</title>
+    <link rel="stylesheet" href="carousel/styles.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="catshere"></div>
+
+    <script src="carousel/carousel.js"></script>
+    <script>
+        const allCats = [
+            {
+                caption: "Fancy cat.",
+                url: "catpics/cat1.webp"
+            },
+            {
+                caption: "Fluffy white cat.",
+                url: "catpics/cat2.webp"
+            },
+            {
+                caption: "Tabby with pink nose.",
+                url: "catpics/cat3.webp"
+            },
+            {
+                caption: "Day dreaming kitten.",
+                url: "catpics/cat4.webp"
+            },
+            {
+                caption: "One ear perked.",
+                url: "catpics/cat5.webp"
+            },
+        ];
+
+        const catsElem = document.querySelector("#catshere");
+
+        createCarousel(catsElem, allCats, { numVisible: 2, hideArrows: false });
+    </script>
+</body>
+
+</html>
