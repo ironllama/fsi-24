@@ -120,13 +120,36 @@
         xhr.open("GET", "http://universities.hipolabs.com/search?country=United+States");
         xhr.addEventListener("load", function () {
             allSchools = JSON.parse(xhr.responseText);
-            allSchools.sort((a, b) => a.name.localeCompare(b.name));
+            // allSchools.sort((a, b) => {
+            //     console.log("A:", a.name, "B:", b.name);
+            //     return a.name.localeCompare(b.name, "en");
+            // });
+            // const onlyNames = allSchools.map(school => school.name);
+            // console.log("ONLY NAMES BEFORE SORT:", onlyNames);
+            // onlyNames.sort();
+            // console.log("ONLY NAMES AFTER SORT:", onlyNames);
+            // allSchools
+            //     .map(getSortFunction(alphaSort()))
+            //     .sort((a, b) => a < b ? -1 : b > a ? 1 : 0)
+            //     .reverse()
+            //     .forEach(school => console.log(school))
+            // let final = allSchools
+            //     .map(school => school.name)
+            //     .join(",")
+            //     .substring(0, 50)
+            //     .toLowerCase()
+            //     .split("")
+            //     .sort()
+            //     .toString();
+            // console.log("FINAL:", final);
+
         });
         xhr.send();
 
         function showSchool() {
             matchesElem.style.display = "none";
 
+            // const school = allSchools.find(function (v) {
             const school = allSchools.find(v => {
                 const lowerName = v.name.toLowerCase();
                 const lowerInput = inputElem.value.toLowerCase();

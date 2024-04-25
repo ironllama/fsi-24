@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Universities</title>
+    <link rel="stylesheet" href="combo/combo.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="combohere"></div>
+    <script src="combo/combo.js"></script>
+    <script>
+        const xhrSchools = new XMLHttpRequest();
+        xhrSchools.open("GET", "http://universities.hipolabs.com/search?country=United+States");
+        xhrSchools.addEventListener("load", () => {
+            const allUniversities = JSON.parse(xhrSchools.responseText);
+
+            createCombo("combohere", allUniversities, "name", details);
+        });
+        xhrSchools.send();
+
+        function details(matchingSchool) {
+            // Fill in the matchingSchool inside the info area.
+            let newHtml = `<div>Name: ${matchingSchool.name}</div>`;
+
+            // for (let i = 0; i < matchingSchool.web_pages.length; i++) {
+            //     const link = matchingSchool.web_pages[i];
+            for (const link of matchingSchool.web_pages) {  // for of loop
+                newHtml += `<div>Pages: <a href="${link}" target="_blank">${link}</a></div>`
+            }
+            newHtml += `<div>Country: ${matchingSchool.country}</div>`;
+
+            return newHtml;
+        }
+    </script>
+</body>
+
+</html>

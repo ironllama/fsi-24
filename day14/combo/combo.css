@@ -1,0 +1,55 @@
+.comboWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+input {
+    font-size: 1.25rem;
+    padding: 0.5rem;
+    min-width: 17rem;
+}
+
+button {
+    background-color: cornflowerblue;
+    color: white;
+    font-weight: bold;
+    font-size: 1.25rem;
+    margin-left: 0.5rem;
+    padding: 0.66rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+}
+
+.matches {
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    font-size: 1.25rem;
+    min-width: 22rem;
+    max-height: 20rem;
+    overflow-y: scroll;
+    background-color: white;
+    position: absolute;
+    z-index: 10;
+    display: none;
+}
+
+.matches>a {
+    display: block;
+    padding: 0.25rem;
+}
+
+.matches>a:focus {
+    background-color: cornflowerblue;
+    color: white;
+}
+
+.info {
+    min-width: 23rem;
+    min-height: 12rem;
+    padding: 2rem;
+    margin: 1rem;
+    font-size: 1.25rem;
+    line-height: 2rem;
+}

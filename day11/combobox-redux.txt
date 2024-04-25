@@ -1,0 +1,12 @@
+Create a combo box mini-library:
+
+- Remove all the HTML, CSS, and JS from the combo box / universities
+   exercise into its own folder, so that it can be used with UI's other than
+   the original universities exercise.
+- You'll have to figure out what data and functions are needed at minimum
+   for this new mini-library and provide an API for these, or a way to
+   configure your combo box mini-library.
+- Try to rerun your universities exercise with your mini-library to confirm
+   everything still works. It should be indistinguishable to the user.
+- As an added test, try using your new combo box mini-library with another
+   small application. (eg. Cocktails API: https://www.thecocktaildb.com)

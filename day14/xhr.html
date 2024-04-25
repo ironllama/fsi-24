@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XHR</title>
+</head>
+
+<body>
+    <div id="everything"></div>
+    <script>
+        const everythingElem = document.querySelector("#everything");
+
+        const apiUrl = "http://universities.hipolabs.com/search?country=United+States";
+
+        // const xhrSchools = new XMLHttpRequest();
+        // xhrSchools.open("GET", apiUrl);
+        // xhrSchools.addEventListener("load", () => {
+        //     const allUniversities = JSON.parse(xhrSchools.responseText);
+        //     everythingElem.innerHTML =
+        //         allUniversities
+        //             .map(school => school.name)
+        //             .join(" ");
+        // });
+        // xhrSchools.send();
+
+        // fetch(apiUrl)
+        //     .then(res => res.json())
+        //     .then(res => {
+        //         everythingElem.innerHTML =
+        //             res
+        //                 .map(school => school.name)
+        //                 .join(" ");
+        //     })
+        //     .catch(err => console.error(err));
+
+        // (async () => {
+        //     let res = await fetch(apiUrl);
+        //     res = await res.json();
+        //     everythingElem.innerHTML =
+        //         res
+        //             .map(school => school.name)
+        //             .join(" ");
+        // })();
+    </script>
+</body>
+
+</html>

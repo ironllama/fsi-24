@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Champion</title>
+    <link rel="stylesheet" href="combo/combo.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Homemade+Apple&display=swap');
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            flex-direction: column;
+            font-family: sans-serif;
+            background: url(lol-back.webp) center / cover no-repeat;
+            background-blend-mode: multiply;
+            background-color: rgba(250, 100, 0, 0.6);
+        }
+
+        .charDeets {
+            margin: auto;
+            max-width: 80%;
+            /* background: url(parchment.png) center / contain no-repeat; */
+            background-image: url(parchment.png);
+            background-size: 100% 100%;
+            padding: 5rem 13rem;
+            margin: auto;
+            /* max-width: 75%; */
+            font-family: "Homemade Apple", cursive;
+        }
+
+        .charTitle {
+            margin-bottom: 1rem;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .charName {
+            font-size: 2rem;
+        }
+
+        .charDeets img {
+            display: block;
+            margin: 2rem auto 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="characterCombo"></div>
+
+    <script src="combo/combo.js"></script>
+    <script>
+        const xhrChamps = new XMLHttpRequest();
+        xhrChamps.open("GET", "https://ddragon.leagueoflegends.com/cdn/14.8.1/data/en_US/champion.json");
+        xhrChamps.addEventListener("load", () => {
+            const respObj = JSON.parse(xhrChamps.responseText);
+            const champArr = Object.values(respObj.data);
+            // console.log("CHAMPS:", champArr);
+
+            createCombo("characterCombo", champArr, "name", characterDeets);
+        });
+        xhrChamps.send();
+
+        function characterDeets(thisChar) {
+            return `
+                <div class="charDeets">
+                    <div class="charTitle"><span class="charName">${thisChar.name}</span> - ${thisChar.title}</div>
+                    <div class="charBlurb">${thisChar.blurb}</div>
+                    <img src="https://ddragon.leagueoflegends.com/cdn/12.4.1/img/champion/${thisChar.image.full}">
+                </div>
+            `;
+        }
+    </script>
+</body>
+
+</html>
