@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Callbacks and Promises</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            min-height: 100vh;
+        }
+
+        .square {
+            width: 10rem;
+            height: 10rem;
+            background-color: cornflowerblue;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="square"></div>
+    <button>undo</button>
+    <script>
+        let blueSquare = document.querySelector(".square");
+        let undoButton = document.querySelector("button");
+
+        let color = "red;"
+        blueSquare.addEventListener("click", () => {
+            console.log("Click");
+            blueSquare.style.backgroundColor = "goldenrod";
+            undoButton.addEventListener("click", () => {
+                setTimeout(() => {
+                    blueSquare.style.backgroundColor = "cornflowerblue";
+                }, 2000);
+            });
+        });
+
+        // console.log("DONE:", color);
+        blueSquare.style.backgroundColor = "firebrick";
+
+        // const waitACoupleSecondsFunc = (callback) => {
+        //     setTimeout(() => {
+        //         console.log("TIMEOUT!");
+        //         callback("DONE!");
+        //     }, 2000)  // Minimum delay of 2000 milliseconds
+        // };
+        // waitACoupleSecondsFunc((result) => {
+        //     console.log(result);
+        // });
+
+        console.log("A");
+        const waitACoupleSeconds = new Promise((res, rej) => {
+            console.log("waitACoupleSeconds");
+            setTimeout(() => {
+                console.log("setTimeout Finished!");
+                second();
+                // res("DONE!");
+                rej("OOPS");
+            }, 2000)  // Minimum delay of 2000 milliseconds
+        });
+
+        console.log("B");
+        function second() {
+            setTimeout(() => {
+                waitACoupleSeconds
+                    .then(result => {
+                        console.log(result);
+                    })
+                    .catch(err => {
+                        console.error(err);
+                    });
+            }, 5000);
+        }
+
+        console.log("C");
+
+        // // Source: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Event_loop
+        // const startSeconds = new Date().getTime() / 1000;
+
+        // setTimeout(() => {
+        //     // prints out "2", meaning that the callback is not called immediately after 500 milliseconds.
+        //     console.log(`Ran after ${new Date().getTime() / 1000 - startSeconds} seconds`);
+        // }, 500);
+
+        // while (true) {
+        //     const currSeconds = new Date().getTime() / 1000;
+        //     if ((currSeconds - startSeconds) >= 10) {
+        //         console.log("Good, looped for 10 seconds");
+        //         break;
+        //     }
+        // }
+    </script>
+</body>
+
+</html>
