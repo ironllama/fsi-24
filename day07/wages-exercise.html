@@ -9,38 +9,6 @@
 
 <body>
     <script>
-        // At the end of these directions is a data structure containing
-        // the text downloaded from KOSIS (Korean Statistical Information
-        // Service) of the "Average Surveyed Wage by Production Job Family
-        // of Manufacturing Category (Daily Wage)" of years 1992 through 2012.
-
-        // 1. Which year had the highest total average reported wages?
-
-        // 2. Which consecutive years had the highest change in Total Average?
-
-        // 3. Which Job Family had the highest wage in 1992? How about 2012?
-
-        // 4. What was the highest ever reported wage and for what Job
-        //     Family and year?
-
-        // 5. How much did a 'Computer S/W Engineer' in Manufacturing make
-        //     in 2012? What was the rate of wage increase since 2000?
-
-        // 6. When was the first year that the 'Computer S/W Engineer'
-        //     average a higher wage than a 'Head of Working Group'?
-
-        // 7. For how many years are there wage reports for a 'Data Entry
-        //     Processor'?
-
-        // 8. Can you create list of only the jobs that have 'Cutting' in the
-        //     Job Family and their respective wages for only 2009 and 2010.
-
-        // The following is the data to use. Note that the first row has the
-        // column headers and is not actual data. You'll have to parse the
-        // string appropriately into a data structure that will make your
-        // work easier to accomplish. There are also some values you might
-        // have to reformat or missing data you'll have to handle in a way
-        // that works for how you want to work with the data.
         const wageData = `
 "By Job Family",1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012
 "Total Average",19137,20307,21219,23942,26547,26125,25774,26353,27238,29445,32107,33352,35663,38077,42532,48566,52388,54638,57884,61964,66122
@@ -260,6 +228,191 @@
 "Animal Oil Refining Worker",2125,23669,25185,26029,29172,30360,30553,30751,32587,-,-,-,-,-,-,-,-,-,-,-,-
 "Ship Derusting Worker",-,-,-,-,-,-,22037,24261,26734,27355,32315,34774,-,-,-,-,-,-,-,-,-
         `;
+        // At the end of these directions is a data structure containing
+        // the text downloaded from KOSIS (Korean Statistical Information
+        // Service) of the "Average Surveyed Wage by Production Job Family
+        // of Manufacturing Category (Daily Wage)" of years 1992 through 2012.
+
+        const newWageData = wageData.replaceAll(", ", "|");
+        const allWages = newWageData.trim().split("\n").map(line => line.split(","));
+        // console.log("ALLWAGES:", allWages);
+
+        // 1. Which year had the highest total average reported wages?
+        function one() {
+            const totalAverages = allWages[1];
+            // const highestPos = totalAverages.reduce((highest, val, i) => {
+            //     if (parseInt(totalAverages[highest]) < parseInt(val)) return i;
+            //     else return highest;
+            // }, 1);
+            let highestPos = 0;
+            let highestVal = 0;
+            for (let i = 1; i < totalAverages.length; i++) {  // Loop through, skipping first val (job name)
+                const currVal = parseInt(totalAverages[i]);
+
+                if (currVal > highestVal) {
+                    highestVal = currVal;
+                    highestPos = i;
+                }
+            }
+            console.log("1. Highest total occured in year:", allWages[0][highestPos]);
+        }
+        one();
+
+
+        // 2. Which consecutive years had the highest change in Total Average?
+        function two() {
+            const totalAverages = allWages[1];
+
+            let highestChange = 0;
+            let highestChangePos = 1
+            for (let i = highestChangePos; i < totalAverages.length - 1; i++) {
+                const currVal = parseInt(totalAverages[i]);
+                const nextVal = parseInt(totalAverages[i + 1]);
+                const diff = Math.abs(currVal - nextVal);
+
+                if (diff > highestChange) {
+                    highestChange = diff;
+                    highestChangePos = i;
+                }
+            }
+            console.log("2. Years with highest change:",
+                allWages[0][highestChangePos],
+                "-",
+                allWages[0][highestChangePos + 1],
+                ":",
+                highestChange
+            );
+        }
+        two();
+
+
+        // 3. Which Job Family had the highest wage in 1992? How about 2012?
+        (() => {
+            function getBestJobIn(year) {
+                const col = allWages[0].indexOf(year);
+
+                let highestVal = 0;
+                let highestRow = 2;
+                for (let i = highestRow; i < allWages.length; i++) {
+                    const currWage = parseInt(allWages[i][col]);
+
+                    if (currWage > highestVal) {
+                        highestVal = currWage;
+                        highestRow = i;
+                    }
+                }
+
+                return allWages[highestRow][0];
+            }
+
+            console.log("3. Job Family with highest wage in 1992:", getBestJobIn("1992"));
+            console.log("3. Job Family with highest wage in 2012:", getBestJobIn("2012"));
+        })()
+
+
+        // 4. What was the highest ever reported wage and for what Job
+        //     Family and year?
+        function four() {
+            let highestVal = 0;
+            let highestRow = 2;
+            let highestCol = 1;
+            for (let row = highestRow; row < allWages.length; row++) {
+                for (let col = highestCol; col < allWages[row].length; col++) {
+                    let currVal = parseInt(allWages[row][col]);
+
+                    if (currVal > highestVal) {
+                        highestVal = currVal;
+                        highestRow = row;
+                        highestCol = col;
+                    }
+                }
+            }
+
+            console.log("4. Highest ever:",
+                highestVal,
+                " for job:",
+                allWages[highestRow][0],
+                "year:",
+                allWages[0][highestCol]
+            );
+        }
+        four();
+
+        // 5. How much did a 'Computer S/W Engineer' in Manufacturing make
+        //     in 2012? What was the rate of wage increase since 2000?
+        function five() {
+            const row = allWages.map(row => row[0]).findIndex(name => name == '"Computer S/W Engineer"');
+            const colEnd = allWages[0].indexOf("2012");
+            const colStart = allWages[0].indexOf("2000");
+            console.log(row, colEnd, colStart);
+
+            console.log("5. A Computer S/W Engineer made", allWages[row][colEnd], "in 2012.");
+            console.log("\tRate of increase was:", (allWages[row][colEnd] - allWages[row][colStart]) / (2012 - 2000));
+        }
+        five();
+
+
+        // 6. When was the first year that the 'Computer S/W Engineer'
+        //     average a higher wage than a 'Head of Working Group'?
+        function six() {
+            const onlyNames = allWages.map(row => row[0]);
+            const ce = onlyNames.findIndex(name => name == '"Computer S/W Engineer"');
+            const hw = onlyNames.findIndex(name => name == '"Head of Working Group"');
+            let pos = 1;
+            for (; pos < allWages[ce].length; pos++) {
+                const ce_pay = parseInt(allWages[ce][pos]);
+                const hw_pay = parseInt(allWages[hw][pos]);
+
+                if (ce_pay > hw_pay) {
+                    break;
+                }
+            }
+
+            console.log("6. The first year CE was paid more than HW was:", allWages[0][pos]);
+        }
+        six();
+
+
+        // 7. For how many years are there wage reports for a 'Data Entry
+        //     Processor'?
+        function seven() {
+            const onlyNames = allWages.map(row => row[0]);
+            const de = onlyNames.findIndex(name => name == '"Data Entry Processor"');
+
+            let count = 0;
+            for (let i = 1; i < allWages[de].length; i++) {
+                if (allWages[de][i] !== "-") count += 1;
+            }
+
+            console.log("7. There are", count, "years of wage reports for Data Entry Processor.");
+        }
+        seven();
+
+
+        // 8. Can you create list of only the jobs that have 'Cutting' in the
+        //     Job Family and their respective wages for only 2009 and 2010.
+        function eight() {
+            const col2009 = allWages[0].indexOf("2009");
+
+            const matches = [];
+            for (let row = 2; row < allWages.length; row++) {
+                const name = allWages[row][0];
+                if (name.includes("Cutting")) {
+                    matches.push([name, allWages[row][col2009], allWages[row][col2009 + 1]]);
+                }
+            }
+
+            console.log("8. Cutting jobs");
+            console.log(matches);
+        }
+        eight();
+
+        // The following is the data to use. Note that the first row has the
+        // column headers and is not actual data. You'll have to parse the
+        // string appropriately into a data structure that will make your
+        // work easier to accomplish. There are also some values you might
+        // have to reformat or missing data you'll have to handle in a way
+        // that works for how you want to work with the data.
     </script>
 </body>
 
