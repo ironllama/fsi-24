@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input Form</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 2rem;
+            border: 1px solid black;
+            padding: 2rem;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    GET version
+    <form method="get" action="#">
+        <div>
+            <label>
+                Name:
+                <input name="name" value="Alice">
+            </label>
+        </div>
+        <div>
+            <label>
+                Color:
+                <input name="color" value="red">
+            </label>
+        </div>
+        <div>
+            <div>Going:</div>
+            <label>
+                Yes:
+                <input name="going" type="radio" value="true" checked>
+            </label>
+            <label>
+                No:
+                <input name="going" type="radio" value="false">
+            </label>
+        </div>
+        <button>Submit!</button>
+    </form>
+    POST version
+    <form method="post" action="#">
+        <div>
+            <label>
+                Name:
+                <input name="name" value="Alice">
+            </label>
+        </div>
+        <div>
+            <label>
+                Color:
+                <input name="color" value="red">
+            </label>
+        </div>
+        <div>
+            <div>Going:</div>
+            <label>
+                Yes:
+                <input name="going" type="radio" value="true" checked>
+            </label>
+            <label>
+                No:
+                <input name="going" type="radio" value="false">
+            </label>
+        </div>
+        <button>Submit!</button>
+    </form>
+    POST/JSON version
+    <form id="jsonVersion">
+        <div>
+            <label>
+                Name:
+                <input name="name" value="Alice">
+            </label>
+        </div>
+        <div>
+            <label>
+                Color:
+                <input name="color" value="red">
+            </label>
+        </div>
+        <div>
+            <div>Going:</div>
+            <label>
+                Yes:
+                <input name="going" type="radio" value="true" checked>
+            </label>
+            <label>
+                No:
+                <input name="going" type="radio" value="false">
+            </label>
+        </div>
+        <!-- <button>Submit!</button> -->
+        <input type="button" value="Submit!">
+    </form>
+    <script>
+        const jsonForm = document.querySelector("#jsonVersion");
+        const jsonFormButton = document.querySelector("input[type='button']");
+        // jsonForm.addEventListener("submit", (evt) => {
+        jsonFormButton.addEventListener("click", () => {
+
+            // evt.preventDefault();
+
+            // If your data is flat and does not have arrays/objects
+            // const newData = new FormData(jsonForm);
+            // console.log("NAME:", newData.get("name"));
+            // console.log("DATA:", newData);
+            // const newObj = Object.assign({}, newData);
+
+            const newObj = {};  // This is going to hold all our data to the backend.
+            // You can go to the form and get each value individually from the inputs.
+            // for (const [key, val] of newData.entries()) {
+            //     newObj[key] = val;
+            // }
+            newObj.name = jsonForm.querySelector("input[name='name']").value;
+            newObj.color = jsonForm.querySelector("input[name='color']").value;
+            const allRadios = jsonForm.querySelectorAll("input[type='radio']");
+            const checkedRadio = Array.from(allRadios).find(elem => elem.checked);
+            newObj.going = checkedRadio.value;
+
+            // Or you can use the FormData object, which processed some of the inputs already.
+            // const newData = new FormData(jsonForm);
+            // newObj.name = newData.get("name");
+            // newObj.color = newData.get("color");
+            // newObj.going = newData.get("going");
+            // newObj.personObj = {
+            //     name: newData.get("name"),
+            //     color: newData.get("color")
+            // }
+            // newObj.stuff = [1, 32, 54, 2]
+
+            // console.log("OBJ:", newObj);
+
+            fetch("http://192.168.3.14/nowhere", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(newObj)
+            })
+            then(res => console.log(res));
+        });
+    </script>
+</body>
+
+</html>

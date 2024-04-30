@@ -1,0 +1,258 @@
+2024-04-29T03:23:13.171Z|Peter|What's up?
+2024-04-29T05:12:03.312Z|Paolo|Hi
+2024-04-29T05:12:03.715Z|Paolo|Hi
+2024-04-29T05:12:03.917Z|Paolo|Hi
+2024-04-29T05:12:04.411Z|Paolo|Hi
+2024-04-29T05:12:04.577Z|Paolo|Hi
+2024-04-29T05:12:04.829Z|Paolo|Hi
+2024-04-29T05:14:36.524Z|Paolo|Paolo
+2024-04-29T05:14:37.940Z|Paolo|Paolo
+2024-04-29T05:16:30.341Z|Paolo|Hi
+2024-04-29T05:17:27.494Z|Paolo|Hi
+2024-04-29T05:23:42.051Z|Paolo|Hi
+2024-04-29T05:33:32.807Z|Alice|Can you hear me, now?
+2024-04-29T05:34:04.441Z|some dude|Can you hear me, now?
+2024-04-29T05:37:40.054Z|some dude|YOYOYO testing testing
+2024-04-29T05:38:54.369Z|some dude|This API shit confuses me more by the day!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+2024-04-29T05:44:15.620Z|Isaac Newton|Hi
+2024-04-29T05:45:19.424Z|Georgia|I need coffee
+2024-04-29T05:47:50.634Z|Jay|Hi
+2024-04-29T05:48:43.186Z|Jay|Hi
+2024-04-29T05:50:27.052Z|Jay|Hello
+2024-04-29T05:50:31.202Z|Big Boi|testing Big Boi username?
+2024-04-29T05:50:53.456Z|Paola, Paolo's evil twin sister|testing Paola username
+2024-04-29T05:52:50.761Z|Charlie|World Wide
+2024-04-29T05:56:24.021Z|John Doe|Hi
+2024-04-29T06:01:19.220Z|Mark Twain|Little Sheep
+2024-04-29T06:04:02.300Z|Big Mama|WHO WANTS A HUG????
+2024-04-29T06:04:35.303Z|John Cena|You can't see me
+2024-04-29T06:05:10.013Z|Jay|Hi
+2024-04-29T06:05:56.097Z|Jay|Hi
+2024-04-29T06:08:12.765Z|test|test
+2024-04-29T06:08:40.230Z|Apple|Banana
+2024-04-29T06:10:21.015Z|Mike|Anna
+2024-04-29T06:10:39.500Z|Mike|Anna
+2024-04-29T06:11:12.380Z|Anna|Mike
+2024-04-29T06:12:32.815Z|Mike|Anna
+2024-04-29T06:12:32.819Z|Mike|Anna
+2024-04-29T06:12:37.900Z|Avril Lavigne|HEY HEY YOU YOU
+2024-04-29T06:15:35.990Z|Isaakus Barbarius Small-Radius|testtttt
+2024-04-29T06:15:55.379Z|Isaakus Barbarius Small-Radius|AGGHHHHHHHHHh
+2024-04-29T06:16:29.538Z|Jack|Jill
+2024-04-29T06:16:40.659Z|Jack|Jill
+2024-04-29T06:18:07.803Z|Isaakus Barbarius Small-Radius|test
+2024-04-29T06:18:12.111Z|Bye|Bye
+2024-04-29T06:20:19.578Z|John|Doe
+2024-04-29T06:20:35.206Z|John|Doe
+2024-04-29T06:20:48.607Z|Jay|Hi
+2024-04-29T06:24:15.208Z|Isaakus Barbarius Small-Radius|welcome to Cocoa Talk chatbot!
+2024-04-29T06:26:34.294Z|Hydrogen|Oxygen
+2024-04-29T06:26:41.329Z|Hydrogen|Oxygen
+2024-04-29T06:26:47.059Z|Isaakus Barbarius Small-Radius|no im choking!
+2024-04-29T06:27:11.121Z|Isaakus Barbarius Small-Radius|I could use of a smoke break soon :D
+2024-04-29T06:28:25.164Z|Isaakus Barbarius Small-Radius|DONT BE LAZY PAOLO
+2024-04-29T06:28:59.055Z|Isaakus Barbarius Small-Radius|🔥🔥🔥🔥🔥
+2024-04-29T06:32:25.711Z|How Now|Cow
+2024-04-29T06:32:42.160Z|Isaakus Barbarius Small-Radius|wowzer
+2024-04-29T06:34:49.727Z|Chat|GPT
+2024-04-29T06:35:59.795Z|Isaakus Barbarius Small-Radius|LUKE is locked in gahdamn
+2024-04-29T06:36:04.809Z|Isaakus Barbarius Small-Radius|headphones and all!!
+2024-04-29T06:37:52.785Z|Hi|Hi
+2024-04-29T06:37:59.038Z|Hi|No
+2024-04-29T06:38:14.319Z|Jay|Test
+2024-04-29T06:38:46.244Z|HI|Bye
+2024-04-29T06:39:56.152Z|Jay|Test
+2024-04-29T06:40:05.997Z|Hi|Wow
+2024-04-29T06:40:44.482Z|Jay|Test
+2024-04-29T06:41:49.510Z|Isaakus Barbarius Small-Radius|headphones and all!!
+2024-04-29T06:41:49.514Z|Isaakus Barbarius Small-Radius|wowzer
+2024-04-29T06:41:49.516Z|Isaakus Barbarius Small-Radius|LUKE is locked in gahdamn
+2024-04-29T06:42:03.345Z|Jay|Test
+2024-04-29T06:42:07.819Z|Isaakus Barbarius Small-Radius|test
+2024-04-29T06:43:01.266Z|Isaakus Barbarius Small-Radius|👹👹👹
+2024-04-29T06:43:13.638Z|Star|Wars
+2024-04-29T06:43:24.836Z|Jay|Yo
+2024-04-29T06:43:40.186Z|Isaakus Barbarius Small-Radius|wassap Jay
+2024-04-29T06:43:40.391Z|Happy|Child
+2024-04-29T06:44:29.780Z|Hi|Bye
+2024-04-29T06:44:37.438Z|Hi|Bye
+2024-04-29T06:45:24.464Z|Test|Test
+2024-04-29T06:45:24.574Z|Jay|Test
+2024-04-29T06:46:14.109Z|WHY|U NO CLEAR
+2024-04-29T06:46:28.866Z|Jay|Test
+2024-04-29T06:46:50.538Z|Jay|Test
+2024-04-29T06:47:07.425Z|WHY|U NO CLEAR
+2024-04-29T06:47:07.438Z|Jay|Test
+2024-04-29T06:47:37.059Z|Isaakus Barbarius Small-Radius|testing enter
+2024-04-29T06:47:39.438Z|Isaakus Barbarius Small-Radius|WOO
+2024-04-29T06:47:49.177Z|Isaakus Barbarius Small-Radius|DO NOT PET THE CAT
+2024-04-29T06:47:56.099Z|Jay|Test
+2024-04-29T06:50:02.744Z|Jay|Test
+2024-04-29T06:51:29.260Z|Isaakus Barbarius Small-Radius|WOO
+2024-04-29T06:51:29.888Z|Isaakus Barbarius Small-Radius|testing enter
+2024-04-29T06:51:29.896Z|Isaakus Barbarius Small-Radius|DO NOT PET THE CAT
+2024-04-29T06:51:29.922Z|Jay|Test
+2024-04-29T06:51:29.929Z|Jay|Test
+2024-04-29T06:51:38.285Z|Jay|Why u no work?
+2024-04-29T06:52:37.982Z|JAY|WHY U NO WORK?!?
+2024-04-29T06:53:38.746Z|jay|hi
+2024-04-29T06:53:49.664Z|jay|hi
+2024-04-29T06:54:28.388Z|Jay|y no work?
+2024-04-29T06:54:38.322Z|John|Doe
+2024-04-29T06:54:57.821Z|John|Doe
+2024-04-29T06:56:42.011Z|Jay|Test
+2024-04-29T07:00:09.371Z|test|tester
+2024-04-29T07:00:34.590Z|Jay|Test
+2024-04-29T07:00:51.486Z|Jay|Y U NO WORK! 
+2024-04-29T07:01:20.337Z|Jay|WORK?
+2024-04-29T07:02:00.123Z|Jay|Y NO WORK
+2024-04-29T07:03:03.310Z|Isaakus Barbarius Small-Radius|damn
+2024-04-29T07:06:23.828Z|Isaakus Barbarius Small-Radius|TEST LONG STRING http://127.0.0.1:5500/Wcoding/Week%208/Monday/chatBotDRAFT.htmlhttp://127.0.0.1:5500/Wcoding/Week%208/Monday/chatBotDRAFT.htmlhttp://127.0.0.1:5500/Wcoding/Week%208/Monday/chatBotDRAFT.htmlhttp://127.0.0.1:5500/Wcoding/Week%208/Monday/chatBotDRAFT.htmlhttp://127.0.0.1:5500/Wcoding/Week%208/Monday/chatBotDRAFT.htmlhttp://127.0.0.1:5500/Wcoding/Week%208/Monday/chatBotDRAFT.htmlhttp://127.0.0.1:5500/Wcoding/Week%208/Monday/chatBotDRAFT.htmlhttp://127.0.0.1:5500/Wcoding/Week%208/Monday/chatBotDRAFT.htmlhttp://127.0.0.1:5500/Wcoding/Week%208/Monday/chatBotDRAFT.html
+2024-04-29T07:06:48.465Z|Alex|Kim
+2024-04-29T07:10:20.215Z|Isaakus Barbarius Small-Radius|WE
+2024-04-29T07:10:22.751Z|Isaakus Barbarius Small-Radius|WEWE
+2024-04-29T07:10:47.608Z|Hi|Hi
+2024-04-29T07:12:34.434Z|Hi|Hi
+2024-04-29T07:13:29.839Z|dfa|sds
+2024-04-29T07:14:31.305Z|Test|Test
+2024-04-29T07:14:59.256Z|df|hi
+2024-04-29T07:15:12.407Z|Jay|1
+2024-04-29T07:17:19.049Z|Brown|Cow
+2024-04-29T07:18:38.229Z|fdf|fdfd
+2024-04-29T07:20:29.954Z|addda|ddd
+2024-04-29T07:21:50.487Z|Blue|Bird
+2024-04-29T07:25:21.252Z|dfdf|dfdfdf
+2024-04-29T07:26:16.199Z|bye|hi
+2024-04-29T07:27:24.745Z|bye|hi
+2024-04-29T07:28:41.288Z|fdsf|sdfsdfsd
+2024-04-29T07:31:17.790Z|Jay|Test
+2024-04-29T07:32:16.243Z|Hi|Bye
+2024-04-29T07:32:33.917Z|JAY|Y U NO WERK :(
+2024-04-29T07:34:06.742Z|Hi|Bye
+
+2024-04-29T07:36:20.186Z|dfdfd|fdfdff
+2024-04-29T07:36:38.910Z|dfdf|dfdf
+2024-04-29T07:36:43.988Z|Isaakus Barbarius Small-Radius|BAM CHIKA WOW WOW
+2024-04-29T07:37:03.590Z|dfdfdfdf|dfdfdf
+2024-04-29T07:40:24.821Z|Hai|Bye
+2024-04-29T07:42:42.731Z|Jay|Test
+2024-04-29T07:44:41.149Z|fdf|dfdf
+2024-04-29T07:44:59.554Z|Jay|Hi
+2024-04-29T07:45:38.228Z|Paolo|Hi
+2024-04-29T07:46:17.494Z|Jay|Hi
+2024-04-29T07:46:29.188Z|Jay|Hi
+2024-04-29T07:46:43.732Z|Hi|Bye
+2024-04-29T07:47:03.581Z|dfdf|dfdf
+2024-04-29T07:47:13.781Z|Be|Happy
+2024-04-29T07:47:22.685Z|Jay|hi
+2024-04-29T07:49:12.154Z|Isaakus Barbarius Small-Radius|test again
+2024-04-29T07:49:57.867Z|Jay|Hello
+2024-04-29T07:51:21.583Z|Jay|Hello
+2024-04-29T07:52:00.670Z|Isaakus Barbarius Small-Radius|testttttttt for Paolo
+2024-04-29T07:52:31.345Z|Jay|Hello
+2024-04-29T07:52:56.424Z|Jay|Hi
+2024-04-29T07:54:35.677Z|hi|hi
+2024-04-29T07:56:11.575Z|Jay|Jay
+2024-04-29T08:00:13.478Z|hay|tpp
+2024-04-29T08:05:04.240Z|Jay|hi
+2024-04-29T08:09:15.421Z|Final|Test
+2024-04-29T08:09:56.068Z|Jay|Hello
+2024-04-29T08:10:27.388Z|Jay|Hello
+2024-04-29T08:10:42.668Z|Jay|Hello
+2024-04-29T08:11:11.621Z|Paolo|Bye
+2024-04-29T08:13:53.107Z|Jay|Hello
+2024-04-29T08:13:59.221Z|Jay|Is this working?
+2024-04-29T08:14:20.696Z|Jay|Why are you doing this?
+2024-04-29T08:16:29.927Z|May|Hello
+2024-04-29T08:16:33.256Z|May|Is this working
+2024-04-29T08:17:03.617Z|Jay|Hello
+2024-04-29T08:18:33.418Z|Jay|Hello
+2024-04-29T08:18:49.356Z|Jay|Hello
+2024-04-29T08:35:12.544Z|Jay|Hello
+2024-04-29T08:35:18.076Z|Jay|Jay
+2024-04-29T08:37:25.974Z|Jay|Hello
+2024-04-29T08:41:54.189Z|Jay|Hello
+2024-04-29T08:44:27.467Z|Jay|He;
+2024-04-29T08:44:31.777Z|Jay|He
+2024-04-29T08:44:58.185Z|Jay|hello
+2024-04-29T08:45:00.420Z|Jay|hello
+2024-04-29T08:45:24.678Z|Jay|hello
+2024-04-29T08:45:31.374Z|Jay|Hello
+2024-04-29T08:45:39.922Z|Jay|Hello
+2024-04-29T08:45:59.019Z|Jay|Hello
+2024-04-29T08:46:14.734Z|Jay|Hello
+2024-04-29T08:47:04.124Z|Jay|Hello
+2024-04-29T08:47:22.954Z|Jay|Hello
+2024-04-29T08:47:33.585Z|Jay|https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout/Controlling_ratios_of_flex_items_along_the_main_axishttps://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout/Controlling_ratios_of_flex_items_along_the_main_axishttps://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout/Controlling_ratios_of_flex_items_along_the_main_axishttps://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout/Controlling_ratios_of_flex_items_along_the_main_axishttps://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout/Controlling_ratios_of_flex_items_along_the_main_axishttps://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout/Controlling_ratios_of_flex_items_along_the_main_axis
+2024-04-29T08:48:20.093Z|Jay|https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout/Controlling_ratios_of_flex_items_along_the_main_axishttps://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout/Controlling_ratios_of_flex_items_along_the_main_axishttps://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout/Controlling_ratios_of_flex_items_along_the_main_axishttps://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout/Controlling_ratios_of_flex_items_along_the_main_axishttps://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout/Controlling_ratios_of_flex_items_along_the_main_axishttps://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout/Controlling_ratios_of_flex_items_along_the_main_axishttps://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout/Controlling_ratios_of_flex_items_along_the_main_axis
+2024-04-29T08:49:42.073Z|Js|https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout/Controlling_ratios_of_flex_items_along_the_main_axis
+2024-04-29T08:52:51.508Z|Hi|https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout/Controlling_ratios_of_flex_items_along_the_main_axishttps://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout/Controlling_ratios_of_flex_items_along_the_main_axishttps://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout/Controlling_ratios_of_flex_items_along_the_main_axishttps://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout/Controlling_ratios_of_flex_items_along_the_main_axis
+2024-04-29T08:55:20.573Z|Jay|https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout/Controlling_ratios_of_flex_items_along_the_main_axishttps://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout/Controlling_ratios_of_flex_items_along_the_main_axishttps://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout/Controlling_ratios_of_flex_items_along_the_main_axishttps://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout/Controlling_ratios_of_flex_items_along_the_main_axishttps://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout/Controlling_ratios_of_flex_items_along_the_main_axishttps://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout/Controlling_ratios_of_flex_items_along_the_main_axishttps://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout/Controlling_ratios_of_flex_items_along_the_main_axis
+2024-04-29T08:56:08.264Z|Jay|https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout/Controlling_ratios_of_flex_items_along_the_main_axishttps://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout/Controlling_ratios_of_flex_items_along_the_main_axishttps://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout/Controlling_ratios_of_flex_items_along_the_main_axishttps://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout/Controlling_ratios_of_flex_items_along_the_main_axishttps://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout/Controlling_ratios_of_flex_items_along_the_main_axis
+2024-04-29T08:56:27.680Z|Jay|https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout/Controlling_ratios_of_flex_items_along_the_main_axishttps://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout/Controlling_ratios_of_flex_items_along_the_main_axishttps://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout/Controlling_ratios_of_flex_items_along_the_main_axishttps://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout/Controlling_ratios_of_flex_items_along_the_main_axishttps://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout/Controlling_ratios_of_flex_items_along_the_main_axis
+2024-04-29T08:56:33.673Z|Jay|Hello
+2024-04-29T12:41:07.716Z|Paolo|Hi
+2024-04-29T12:42:11.935Z|Paolo|Test
+2024-04-29T13:08:56.344Z|Paolo|New
+2024-04-29T13:10:40.598Z|Paolo|Test
+2024-04-29T13:12:07.332Z|Test|test
+2024-04-29T13:14:32.749Z|Test|Test
+2024-04-29T13:15:27.925Z|Test|Test
+2024-04-29T13:15:33.600Z|Test|Test
+2024-04-29T13:19:16.076Z|Test|Test
+2024-04-29T13:21:13.311Z|Test|Test
+2024-04-29T14:03:53.216Z|Test|Test
+2024-04-29T14:03:59.720Z|New|Test
+2024-04-29T14:04:14.606Z|Test|Test
+2024-04-29T14:06:04.436Z|Test|test
+2024-04-30T01:00:30.675Z|Paolo|Hi
+2024-04-30T01:10:57.919Z|Paolo|Test
+2024-04-30T01:14:20.751Z|Isaakus Barbarius Small-Radius|Good job guys!!
+2024-04-30T01:29:08.775Z|Jay|Hello
+2024-04-30T01:29:12.487Z|Jay|Is it working now?
+2024-04-30T01:29:35.774Z|Jay|Hi
+2024-04-30T01:29:36.270Z|Jay|Hi
+2024-04-30T01:29:50.524Z|Jay|Hello is it working
+2024-04-30T01:30:13.343Z|Jay|Is it working?
+2024-04-30T01:31:01.337Z|Jay|Hello
+2024-04-30T01:31:02.496Z|Jay|sda
+2024-04-30T01:31:03.608Z|Jay|asd
+2024-04-30T01:31:04.394Z|Jay|asd
+2024-04-30T01:31:27.789Z|Jay|hi
+2024-04-30T01:31:28.321Z|Jay|hi
+2024-04-30T01:31:28.977Z|Jay|hi
+2024-04-30T01:32:53.056Z|Jay|hi
+2024-04-30T01:32:53.967Z|Jay|hi
+2024-04-30T01:32:55.888Z|Jay|hi
+2024-04-30T01:33:20.763Z|Jay|Hello
+2024-04-30T01:33:22.431Z|Jay|Hi
+2024-04-30T01:41:47.035Z|Jay|Hi
+2024-04-30T01:41:49.371Z|Jay|Hello
+2024-04-30T01:45:22.804Z|Paolo|Hi
+2024-04-30T01:51:01.515Z|Isaakus Barbarius Small-Radius|popo
+2024-04-30T01:51:46.379Z|Isaakus Barbarius Small-Radius|asfkasfasfasfas
+2024-04-30T01:51:59.940Z|Isaakus Barbarius Small-Radius|popo
+2024-04-30T01:52:16.459Z|Isaakus Barbarius Small-Radius|test
+2024-04-30T01:54:13.710Z|Jay|Hello
+2024-04-30T01:54:24.022Z|Jay|he
+2024-04-30T01:54:24.673Z|Isaakus Barbarius Small-Radius|popo
+2024-04-30T01:55:29.608Z|Isaakus Barbarius Small-Radius|agagawgawgawgw
+2024-04-30T01:58:55.301Z|Test|Test
+2024-04-30T01:59:02.018Z|Test|Testing
+2024-04-30T02:03:00.511Z|Jay|Hello
+2024-04-30T02:03:12.264Z|Alex|Greetings
+2024-04-30T02:06:32.421Z|Jay|Hello
+2024-04-30T02:06:48.719Z|Alex|Hello, Jay!
+2024-04-30T02:10:32.960Z|Jay|Hello 
+2024-04-30T02:10:51.234Z|Jay|Is it slowing down? Hello this is my name 
+2024-04-30T02:11:08.477Z|Alex|What's up?
+2024-04-30T02:11:12.560Z|Alex|Nada mucho, amigo!
+2024-04-30T02:11:17.339Z|Alex|Are we scrolling, yet?
+2024-04-30T02:11:24.849Z|Alex|Something something about a horse.
+2024-04-30T02:11:45.373Z|Alex|There was this one time... at band camp... yea. Tympany drums.
+2024-04-30T02:12:47.009Z|Jay|sdadddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
+2024-04-30T02:18:59.825Z|Isaakus Barbarius Small-Radius|thats BUSSIN FR FR NO CAP 🗣️🔥🔥🔥
+2024-04-30T02:39:30.559Z|Luke|Hello
+2024-04-30T02:39:31.371Z|Luke|Hello
+2024-04-30T02:39:35.487Z|Luke|Hello
+2024-04-30T02:39:41.492Z|Luke|Hello

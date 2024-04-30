@@ -1,0 +1,23 @@
+PART I:
+
+Create a Chat UI that has at least the following:
+- An area where the user can type in their name.
+- An area where the chat messages are displayed, or the chat history area. Each chat message in the history area should include:
+    - The chat message text
+    - The chat message sender
+    - The date/time when the chat message was sent
+- An area to type in a new message to add to the conversation.
+- A button to submit the new chat message and sender name. Don't worry about sending the date/time when the message was sent, as this will be handled by the backend.
+
+At the start of the UI, the chat page should load in all the past messages into the chat history area.
+
+When the button is clicked the UI should send in a JSON-encoded POST message: the name typed into the sender input and the new message text from the appropriate input.
+
+The UI should refresh every X number of seconds. Play with the timing to find something that balances utility of the message history area and the message input areas. (The inputs are reset on refresh.)
+
+Color, layout, style, theme is all up to you.
+
+
+PART II:
+
+Update your chat UI so that it only updates the chat history area every X number of seconds, instead of the whole page. This way the user can preserve what they may have been typing into the inputs while the history is getting updated.
