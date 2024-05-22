@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Forms for flask_requests</title>
+</head>
+
+<body>
+    <fieldset>
+        <legend>GET /dateinfo</legend>
+        <form id="dateinfoGet">
+            <label>
+                Please enter a date in yyyy-mm-dd format:
+                <input id="dateinfoGetInput" type="date">
+            </label>
+            <button>Send</button>
+        </form>
+        <div id="dateinfoGetResult"></div>
+    </fieldset>
+
+    <fieldset>
+        <legend>POST /dateinfo</legend>
+        <form id="dateinfoPost">
+            <label>
+                Please enter a date in yyyy-mm-dd format:
+                <input id="dateinfoPostInput" type="date">
+            </label>
+            <button>Send</button>
+        </form>
+        <div id="dateinfoPostResult"></div>
+    </fieldset>
+
+    <fieldset>
+        <legend>GET /user</legend>
+        <form id="userGet">
+            <div>
+                <label>
+                    Please enter a user id:
+                    <input id="userIdInput">
+                </label>
+            </div>
+            <div>
+                <label>
+                    Please enter a snack
+                    <input id="snackInput">
+                </label>
+                <button>Send</button>
+            </div>
+        </form>
+        <div id="userGetResult"></div>
+    </fieldset>
+
+    <script>
+        const dateinfoGetInputElem = document.querySelector("#dateinfoGetInput");
+        const dateinfoPostInputElem = document.querySelector("#dateinfoPostInput");
+
+        document.querySelector("#dateinfoGet").addEventListener("submit", evt => {
+            evt.preventDefault()
+            // console.log("INPUT DATE:", dateinfoGetInputElem.value);
+            const payload = {
+                date: dateinfoGetInputElem.value
+            }
+
+            fetch("/dateinfo?jsonStuff=" + JSON.stringify(payload))
+                // Normally, res.json(). But since I want to just print out the JSON string, gonna leave as text()
+                .then(res => res.text())
+                .then(res => {
+                    document.querySelector("#dateinfoGetResult").innerHTML = res;
+                });
+        });
+
+        document.querySelector("#dateinfoPost").addEventListener("submit", evt => {
+            evt.preventDefault()
+            const payload = {
+                date: dateinfoPostInputElem.value
+            }
+
+            fetch("/dateinfo", {
+                method: "post",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(payload)
+            })
+                // Normally, res.json(). But since I want to just print out the JSON string, gonna leave as text()
+                .then(res => res.text())
+                .then(res => {
+                    document.querySelector("#dateinfoPostResult").innerHTML = res;
+                });
+        });
+
+        const userIdInputElem = document.querySelector("#userIdInput");
+        const snackInputElem = document.querySelector("#snackInput");
+
+        document.querySelector("#userGet").addEventListener("submit", evt => {
+            evt.preventDefault();
+
+            fetch("/user/" + userIdInputElem.value + "?snack=" + snackInputElem.value)
+                .then(res => res.json())
+                .then(res => {
+                    document.querySelector("#userGetResult").innerHTML = res.message;
+                })
+        })
+    </script>
+</body>
+
+</html>

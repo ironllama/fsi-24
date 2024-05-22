@@ -23,3 +23,52 @@
 # as necessary. Remember to also use the appropriate request methods
 # and data formats to match what is expected from the API. Display results
 # of each API call below the respective forms.
+
+from flask import Flask, request, jsonify
+from datetime import date
+import json
+
+app = Flask(__name__)
+
+@app.get("/numvowels")
+def numvowels():
+    word = request.args.get('word', '')
+    return str(len([char for char in word if char.lower() in "aeiou"]))
+
+@app.post("/greetings")
+def greetings():
+    name = request.form.get('name', '')
+    return f"Hello {name}, your name backwards is {name[::-1]}!"
+
+@app.route("/dateinfo", methods=['GET', 'POST'])
+def dateinfo():
+    if request.method == 'GET':
+        if "jsonStuff" in request.args:
+            # print("JSONSSTUFF:", request.args.get('jsonStuff'))
+            data = json.loads(request.args.get('jsonStuff'))
+            new_date = date.fromisoformat(data.get("date"))
+    else:
+        new_date = date.fromisoformat(request.json.get("date"))
+
+    # If you return a dict, flask will automatically turn it into a JSON string
+    return {
+        # "year": new_date.strftime("%Y")
+        "year": new_date.year,
+        "month": new_date.strftime("%B"),
+        "day": new_date.day,
+        "dayOfWeek": new_date.strftime("%A"),
+        "dayOfYear": new_date.strftime("%j")
+    }
+
+@app.get("/user/<user_id>")
+def user(user_id):
+    snack = request.args.get("snack", "")
+
+    if user_id == "123-456-7890":
+        return { "message": f"{user_id} loves to eat {snack}s" }
+        # goingBack = { "message": f"{user_id} loves to eat {snack}s" }
+    else:
+        return { "message": "User not found" }
+        # goingBack =  { "message": "User not found" }
+
+    # return jsonify(goingBack)  # Dict to string -- if you want to make JSON
