@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block head %}
+{{ super() }}
+<style>
+    body {
+        background-color: cornflowerblue;
+        color: white;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<h1>{% block title %} Home {% endblock %}</h1>
+<p>...sweet home.</p>
+{% endblock %}

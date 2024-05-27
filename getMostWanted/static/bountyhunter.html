@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bounty Hunter</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Most Wanted</h1>
+    <ul id="wantedList"></ul>
+
+    <script>
+        const wantedListElem = document.querySelector("#wantedList");
+        fetch("/highbounty")
+            .then(res => res.json())
+            .then(allCriminals => {
+                for (const wanted of allCriminals) {
+                    wantedListElem.innerHTML += `<li><a href="/details/${wanted.id}">${wanted.name}</a></li>`;
+                }
+            });
+    </script>
+</body>
+
+</html>
