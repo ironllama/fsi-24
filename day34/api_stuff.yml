@@ -1,0 +1,13 @@
+GET /start
+  return timestamp
+
+GET /elapsed
+  return elapsed time
+# GET /stop
+#   returns elapsed time
+
+GET /reset
+  returns ok
+
+# GET /check
+#   return elapsed time

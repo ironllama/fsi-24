@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stop Watch</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Faster+One&display=swap');
+
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5rem;
+            min-height: 100vh;
+            margin: 0;
+            background-color: cornflowerblue;
+            color: white;
+            font-family: sans-serif;
+        }
+
+        .all_times {
+            font-family: "Faster One", system-ui;
+            font-size: 10rem;
+            display: flex;
+            width: 60rem;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .buttons button {
+            display: inline-block;
+            width: 10rem;
+            height: 3rem;
+            border-radius: 10px;
+            border: none;
+            color: white;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .start {
+            background-color: forestgreen;
+        }
+
+        .stop {
+            background-color: firebrick;
+        }
+
+        .reset {
+            background-color: goldenrod;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="all_times">
+        <div class="minutes">00</div>
+        <div class="divider">:</div>
+        <div class="seconds">00</div>
+        <div class="divider">:</div>
+        <div class="millis">000</div>
+    </div>
+    <div class="buttons">
+        <button class="start">Start</button>
+        <button class="stop">Stop</button>
+        <button class="reset">Reset</button>
+    </div>
+
+    <script>
+        const minutesElem = document.querySelector(".minutes");
+        const secondsElem = document.querySelector(".seconds")
+        const millisElem = document.querySelector(".millis")
+        const startButton = document.querySelector(".start");
+        const stopButton = document.querySelector(".stop");
+        const resetButton = document.querySelector(".reset");
+
+        let currInterval = null;
+        let lastTimestamp = 0;
+        let elapsedTime = 0;
+
+        // Adjust Python timestamp seconds to JS timestamp milliseconds
+        function pythonTs2JavaScriptTs(time) {
+            return parseFloat(time) * 1000;
+        }
+
+        // General logic to display a given time in the DOM HTML above.
+        function displayTime(elapsedTime) {
+            const mins = Math.floor(elapsedTime / 60000);
+            const secs = Math.floor((elapsedTime - (mins * 60000)) / 1000);
+            const millis = Math.floor((elapsedTime - (mins * 60000) - (secs * 100)) % 1000);
+
+            minutesElem.textContent = mins < 10 ? "0" + mins : mins;
+            secondsElem.textContent = secs < 10 ? "0" + secs : secs;
+            millisElem.textContent = millis < 10 ? "00" + millis : millis < 100 ? "0" + millis : millis;
+        }
+
+
+        // Start with whatever the backend has currently.
+        (async () => {
+            let res = await fetch("/elapsed");  // Is there any clock running with elapsed time?
+            res = await res.text();
+
+            if (res != "NO START") {
+                let [running, time] = res.split("|");
+                time = pythonTs2JavaScriptTs(time);
+
+                if (running === "R") startClock(time);
+                else displayTime(time);
+            }
+        })();
+
+        startButton.addEventListener("click", async () => {
+            // fetch("/start")
+            //     .then(res => res.text())
+            //     .then(res => {
+            //         // More stuff
+            //         if (lastTimestamp === 0) {
+            //             elapsedTime = 0;
+            //         }
+            //         lastTimestamp = Date.now();
+            //         currInterval = setInterval(startClock, 50);
+            //     })
+            //     .catch(err => {
+            //         console.error("Problems with the fetch!")
+            //     }
+            // });
+            if (currInterval == null) {
+                // Same as above, but with async/await to wrap the fetch() and text() Promises
+                try {
+                    let res = await fetch("/start");
+                    res = await res.text();
+                    res = pythonTs2JavaScriptTs(res);
+
+                    elapsedTime = res;
+
+                    lastTimestamp = Date.now();
+                    startClock();
+                }
+                catch (err) {
+                    console.error("Problems with the fetch!");
+                }
+            }
+        });
+
+        function startClock(newCurrTime = null) {
+            advanceClock(newCurrTime);
+
+            currInterval = setInterval(() => {
+                advanceClock();
+            }, 50);
+        }
+
+        function advanceClock(newElapsedTime = null) {
+            const currTimestamp = Date.now();
+
+            if (newElapsedTime === null) {
+                elapsedTime += currTimestamp - lastTimestamp;
+            }
+            else {
+                elapsedTime = newElapsedTime;
+            }
+
+            displayTime(elapsedTime);
+
+            lastTimestamp = currTimestamp;
+        }
+
+        stopButton.addEventListener("click", async () => {
+            let res = await fetch("/stop");
+            res = await res.text();
+
+            if (res !== "NO START") {
+                clearInterval(currInterval);
+                currInterval = null;
+
+                res = pythonTs2JavaScriptTs(res); // Adjust Python timestamp to JS timestamp
+                advanceClock(res);
+            }
+        });
+
+        resetButton.addEventListener("click", async () => {
+            let res = await fetch("/reset")
+            res = await res.text();
+
+            if (res !== "OK") {
+                console.error("ERROR: Something went wrong on reset.")
+            }
+
+            lastTimestamp = 0;
+            elapsedTime = 0;
+            minutesElem.textContent = "00";
+            secondsElem.textContent = "00";
+            millisElem.textContent = "000";
+        });
+    </script>
+</body>
+
+</html>
