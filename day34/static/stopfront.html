@@ -81,7 +81,7 @@
         const resetButton = document.querySelector(".reset");
 
         let currInterval = null;
-        let lastTimestamp = 0;
+        let startTimestamp = 0;
         let elapsedTime = 0;
 
         // Adjust Python timestamp seconds to JS timestamp milliseconds
@@ -110,8 +110,12 @@
                 let [running, time] = res.split("|");
                 time = pythonTs2JavaScriptTs(time);
 
-                if (running === "R") startClock(time);
-                else displayTime(time);
+                if (running === "R") {
+                    startClock(time);
+                }
+                else {
+                    displayTime(time);
+                }
             }
         })();
 
@@ -120,10 +124,10 @@
             //     .then(res => res.text())
             //     .then(res => {
             //         // More stuff
-            //         if (lastTimestamp === 0) {
+            //         if (startTimestamp === 0) {
             //             elapsedTime = 0;
             //         }
-            //         lastTimestamp = Date.now();
+            //         startTimestamp = Date.now();
             //         currInterval = setInterval(startClock, 50);
             //     })
             //     .catch(err => {
@@ -137,10 +141,7 @@
                     res = await res.text();
                     res = pythonTs2JavaScriptTs(res);
 
-                    elapsedTime = res;
-
-                    lastTimestamp = Date.now();
-                    startClock();
+                    startClock(res);
                 }
                 catch (err) {
                     console.error("Problems with the fetch!");
@@ -148,8 +149,11 @@
             }
         });
 
-        function startClock(newCurrTime = null) {
-            advanceClock(newCurrTime);
+        function startClock(newElapsedTime) {
+            elapsedTime = newElapsedTime;
+            startTimestamp = Date.now() - elapsedTime;
+
+            advanceClock(newElapsedTime);
 
             currInterval = setInterval(() => {
                 advanceClock();
@@ -160,15 +164,13 @@
             const currTimestamp = Date.now();
 
             if (newElapsedTime === null) {
-                elapsedTime += currTimestamp - lastTimestamp;
+                elapsedTime = currTimestamp - startTimestamp;
             }
             else {
                 elapsedTime = newElapsedTime;
             }
 
             displayTime(elapsedTime);
-
-            lastTimestamp = currTimestamp;
         }
 
         stopButton.addEventListener("click", async () => {
@@ -185,18 +187,21 @@
         });
 
         resetButton.addEventListener("click", async () => {
-            let res = await fetch("/reset")
-            res = await res.text();
+            // Can only reset if the clock is stopped.
+            if (currInterval === null) {
+                let res = await fetch("/reset")
+                res = await res.text();
 
-            if (res !== "OK") {
-                console.error("ERROR: Something went wrong on reset.")
+                if (res !== "OK") {
+                    console.error("ERROR: Something went wrong on reset.")
+                }
+
+                startTimestamp = 0;
+                elapsedTime = 0;
+                minutesElem.textContent = "00";
+                secondsElem.textContent = "00";
+                millisElem.textContent = "000";
             }
-
-            lastTimestamp = 0;
-            elapsedTime = 0;
-            minutesElem.textContent = "00";
-            secondsElem.textContent = "00";
-            millisElem.textContent = "000";
         });
     </script>
 </body>
