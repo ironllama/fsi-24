@@ -1,0 +1,16 @@
+{% extends "list_0.html" %}
+
+{% block content %}
+<!-- No code changes from version 5. Served by flask, as a static file! -->
+<div id="listWrapper">
+    <form id="listForm">
+        <input placeholder="0" id="newAmt" type="number" name="amt">
+        <input placeholder="Type new item here." id="newItem" name="item">
+    </form>
+    <ul id="listItems">
+        {% for item in all_items %}
+        <li>{{item['amt']}}x {{item['item']}}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

@@ -1,0 +1,52 @@
+openapi: 3.0.1
+info:
+  version: "1.00"
+  title: List handler
+  description: "To save a bunch of stuff for later."
+paths:
+  /getItems:
+    get:
+      summary: To get a list of all saved items.
+      responses:
+        200:
+          description: All the currently saved items.
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: oranges, apples, lemons
+        500:
+          description: Error
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "Something went terribly wrong."
+
+  /newItem:
+    post:
+      summary: To add a new item to your list.
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                item:
+                  type: string
+                  example: oranges
+      responses:
+        200:
+          description: Everything went ok!
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: <html>
+        500:
+          description: Error
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "Something went terribly wrong."
