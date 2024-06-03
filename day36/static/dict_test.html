@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dict Test</title>
+</head>
+
+<body>
+    <div>
+        <input id="one">
+        <input id="two">
+        <button id="go">Go</button>
+    </div>
+    <script>
+        go.addEventListener("click", () => {
+            fetch("/stuff", {
+                method: "post",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    one: one.value,
+                    two: two.value
+                })
+            })
+                .then(res => res.text())
+                .then(res => console.log("RES:", res))
+        })
+    </script>
+</body>
+
+</html>
