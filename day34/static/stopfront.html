@@ -6,7 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stop Watch</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Faster+One&display=swap');
+        /* @import url('https://fonts.googleapis.com/css2?family=Faster+One&display=swap'); */
+        @font-face {
+            font-family: 'Segmented';
+            src: url('curved-seven-segment-2.otf');
+        }
 
         body {
             display: flex;
@@ -22,8 +26,8 @@
         }
 
         .all_times {
-            font-family: "Faster One", system-ui;
-            font-size: 10rem;
+            font-family: 'Segmented', system-ui;
+            font-size: 20rem;
             display: flex;
             width: 60rem;
         }
@@ -155,9 +159,8 @@
 
             advanceClock(newElapsedTime);
 
-            currInterval = setInterval(() => {
-                advanceClock();
-            }, 50);
+            currInterval = setInterval(advanceClock, 50);
+            console.log("CURRINTERVAL:", currInterval);
         }
 
         function advanceClock(newElapsedTime = null) {
