@@ -57,7 +57,9 @@
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ fav: userFav })
             }
-            fetch("/someapiPostJson", fetch_options);
+            fetch("/someapiPostJson", fetch_options)
+                .then(res => res.text())
+                .then(res => console.log(res));
         });
 
     </script>
