@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fruit</title>
+</head>
+
+<body>
+    <!-- <form id="fruitForm"> -->
+    <label>
+        What's your favorite fruit?
+        <input name="fav" value="watermelon">
+    </label>
+    <button>Go</button>
+    <!-- </form> -->
+    <script>
+        // const fruitFormElem = document.querySelector("#fruitForm");
+
+        // fruitFormElem.addEventListener("submit", evt => {
+        //     evt.preventDefault();
+        //     console.log("SUBMITTING FORM")
+        // })
+
+        const buttonElem = document.querySelector("button");
+        const inputElem = document.querySelector("input");
+
+        buttonElem.addEventListener("click", () => {
+            // console.log("CLICKED BUTTON:", inputElem.value)
+            const userFav = inputElem.value;
+
+            // Standard query params.
+            // fetch("/someapiGet?fav=" + userFav);
+
+            // With path params.
+            // fetch("/someapiPath/" + userFav);
+
+            // With POST using plain text body
+            // const fetch_options = {
+            //     method: "POST",
+            //     body: userFav
+            // }
+            // fetch("/someapiPost", fetch_options);
+
+            // With POST using url-encoded body
+            // const fetch_options = {
+            //     method: "POST",
+            //     headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            //     body: "fav=" + userFav
+            // }
+            // fetch("/someapiPostUrl", fetch_options);
+
+            // With POST using JSON
+            const fetch_options = {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ fav: userFav })
+            }
+            fetch("/someapiPostJson", fetch_options);
+        });
+
+    </script>
+</body>
+
+</html>
