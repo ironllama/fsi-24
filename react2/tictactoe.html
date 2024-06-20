@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html {
+            font-size: 8px;
+        }
+
+        body,
+        #root {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: sans-serif;
+            font-weight: bold;
+            gap: 2rem;
+        }
+
+        .title {
+            font-size: 10rem;
+        }
+
+        .boardAndHistory {
+            display: flex;
+            gap: 10rem;
+        }
+
+        .board {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .row {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .square {
+            width: 10rem;
+            height: 10rem;
+            border-radius: 5px;
+            border: 1px solid black;
+            font-size: 10rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: cornflowerblue;
+        }
+
+        .historyTitle {
+            font-size: 3rem;
+        }
+
+        .historyMoves {
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .historyMoves li {
+            font-size: 2.5rem;
+            list-style: none;
+        }
+
+        button {
+            border: none;
+            padding: 1rem 3rem;
+            background-color: cornflowerblue;
+            color: white;
+            font-size: 3rem;
+            font-weight: inherit;
+            border-radius: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Start with 1 "root" element, just to be similar to React -->
+    <div id="root"></div>
+    <script>
+        function Square(parent, squareId, isActive, getCurrentMove, squareClicked) {
+            console.log("SQUARE");
+            function handleMouseOver(e) {
+                if (!isActive()) return;
+
+                if (e.target.innerHTML === "") {
+                    e.target.style.backgroundColor = "rgba(144, 238, 144, 0.5)";
+                }
+                else {
+                    e.target.style.backgroundColor = "rgba(255, 182, 193, 0.5)";
+                }
+            }
+
+            function handleMouseOut(e) {
+                if (!isActive()) return;
+
+                e.target.style.backgroundColor = "";
+            }
+
+            function handleClick(e) {
+                // If the buttons should not be active, or the square is already filled, ignore.
+                if (!isActive()) return;
+                if (e.target.innerHTML !== "") return;  // If this square is already played, ignore click.
+
+                let playerToken = "";
+
+                if (getCurrentMove() % 2 === 0) playerToken = "X";
+                else playerToken = "O";
+
+                e.target.innerHTML = playerToken;
+
+                squareClicked(playerToken, squareId);
+            }
+
+            let newSquare = document.createElement("div");
+            newSquare.className = "square";
+
+            parent.appendChild(newSquare);
+
+            newSquare.addEventListener("click", handleClick);
+            newSquare.addEventListener("mouseover", handleMouseOver);
+            newSquare.addEventListener("mouseout", handleMouseOut);
+
+            // The following are for signals from the parent Board
+            this.highlightSquare = () => {
+                newSquare.style.backgroundColor = "green";
+            }
+
+            this.click = () => {
+                newSquare.click();
+            }
+        }
+
+        function Board(parent, isActive, getCurrentMove, squareClicked) {
+            console.log("BOARD");
+            let allSquares = [];
+            // Create the 3x3 grid of squares
+            for (let i = 0; i < 3; i++) {
+                const newRow = document.createElement("div");
+                newRow.className = "row";
+
+                for (let k = 0; k < 3; k++) {
+                    allSquares.push(new Square(newRow, (i * 3) + k, isActive, getCurrentMove, squareClicked));
+                }
+
+                parent.appendChild(newRow);
+            }
+
+            // The following are for signals from the parent Game
+            // Mostly just to forward to the child Square
+            this.highlightSquare = (idx) => {
+                allSquares[idx].highlightSquare();
+            }
+
+            this.click = (idx) => {
+                allSquares[idx].click();
+            }
+        }
+
+        function Game(parent) {
+            console.log("GAME");
+            parent.innerHTML = `
+                <div class="title"></div>
+                <div class="boardAndHistory">
+                    <div class="board"></div>
+                    <div class="history">
+                        <div class="historyTitle">Move History</div>
+                        <ul class="historyMoves"></ul>
+                    </div>
+                </div>
+                <button>PLAY AGAIN</button>
+            `;
+
+            let allPlayerMoves = [[], []]; // [X moves, O moves]
+
+            let buttonsActive = true;
+            function isActive() { return buttonsActive; }
+
+            let currentMove = 0;
+            function getCurrentMove() { return currentMove; }
+            function squareClicked(squarePlayer, squareId) {
+                let player = 0;
+                if (squarePlayer === "O") player = 1;
+
+                // Trim/add history only if not recreating history state (by clicking move list)
+                if (!replayingHistory) {
+                    // If a new square is played while looking at history, trim history.
+                    if (currentMove < moveHistory.length) trimHistoryToCurrent();
+
+                    // addToMoveHistory(e.target);
+                    addToMoveHistory(squareId);
+                }
+
+                allPlayerMoves[player].push(squareId);
+                // console.log("Game: squareClicked: squarePlayer:", squarePlayer, squareId, allPlayerMoves);
+                // console.log("BOARD:", board);
+
+                const winnerFound = checkWinner(allPlayerMoves[player].sort().join(""))
+                if (winnerFound !== "") {
+                    titleElem.innerHTML = `CHIKIN: ${squarePlayer}`;
+                    for (const pos of winnerFound) {
+                        // allSquares[parseInt(pos)].style.color = "green";
+                        board.highlightSquare(parseInt(pos));
+                    }
+                    gameOver();
+                }
+                else {
+                    if (currentMove === 8) {
+                        titleElem.innerHTML = `CATS, YO`;
+                        gameOver();
+                    }
+                    else {
+                        // Prep for the next move.
+                        currentMove += 1;
+                        displayNextMove();
+                    }
+                }
+            }
+
+            const titleElem = document.querySelector(".title");
+            function displayNextMove() {
+                titleElem.innerHTML = `Next: ${currentMove % 2 === 0 ? 'X' : 'O'}`;
+            }
+            displayNextMove();
+
+            // Things to do when the game is over, whether by winning or by cats.
+            const resetButton = parent.querySelector("button");
+            function gameOver() {
+                buttonsActive = false;
+
+                // Show the reset button.
+                resetButton.style.display = "block";
+            }
+
+            // Get the board ready to play. Tweaked a bit so that it can also be used at the end of a game.
+            let board;
+            const boardElem = parent.querySelector(".board");
+            function resetBoard() {
+                boardElem.innerHTML = "";  // Remove old board.
+                board = new Board(boardElem, isActive, getCurrentMove, squareClicked);
+
+                currentMove = 0;
+                displayNextMove();
+                resetButton.style.display = "none";
+                buttonsActive = true;
+                allPlayerMoves = [[], []];
+
+                // if (!replayingHistory) moveHistoryList.innerHTML = "";
+            }
+            // When the reset button is clicked, get the game ready for another round.
+            resetButton.addEventListener("click", resetBoard);
+
+            resetBoard();  // Get ready to play first round!
+
+
+            // STUFF TO DEAL WITH HISTORY!
+            const moveHistoryList = document.querySelector(".historyMoves");
+            let moveHistory = [];
+            let replayingHistory = false;
+            function goBackToMove(moveNum) {
+                replayingHistory = true;
+
+                resetBoard();
+                for (let i = 0; i <= moveNum; i++) {
+                    let moveFromHistory = moveHistory[i];
+                    // allSquares[moveFromHistory].click();
+                    board.click(moveFromHistory);
+                }
+
+                replayingHistory = false;
+            }
+
+            function addToMoveHistory(squareId) {
+                // Add to the moveHistory array.
+                // Doing my own "array.indexOf", but allSquare is not a true Array.
+                // let currentMoveIdx = -1;
+                // for (let i = 0; i < allSquares.length; i++) {
+                //     if (allSquares[i] === square) {
+                //         currentMoveIdx = i;
+                //     }
+                // }
+                // moveHistory.push(currentMoveIdx);
+                moveHistory.push(squareId);
+
+                // Adding to the moveHistoryList
+                // moveHistoryList.innerHTML += `<li>Move #${currentMove + 1}</li>`;
+                let newItem = document.createElement("li");
+                newItem.innerHTML = `Move #${currentMove + 1}`;
+                moveHistoryList.appendChild(newItem);
+
+                // Force the anonymous function for the event listener to get the value
+                // from this context, rather than the global context. The global variable
+                // will change, but this local variable stays whatever value it was when
+                // it was created.
+                let localCurrentMove = currentMove;
+                newItem.addEventListener("click", function () {
+                    goBackToMove(localCurrentMove);
+                });
+            }
+
+            function trimHistoryToCurrent() {
+                moveHistory = moveHistory.slice(0, currentMove);
+
+                const allListItems = document.querySelectorAll(".historyMoves li");
+                for (let i = currentMove; i < allListItems.length; i++) {
+                    allListItems[i].remove();
+                }
+            }
+        }
+
+        const root = document.getElementById("root");
+        new Game(root);
+
+        // In the global scope, like the React tutorial.
+        // Expects a string of current positions for a player. (eg. "1456") Returns boolean.
+        const winningCombos = ["012", "345", "678", "036", "147", "258", "048", "246"];
+        function checkWinner(allPositions) {
+            for (const combo of winningCombos) {
+                let allThere = true;  // Assume the best.
+                for (const pos of combo) {
+                    if (!allPositions.includes(pos)) {
+                        allThere = false;  // Nope, this combo won't work.
+                        break;
+                    }
+                }
+                if (allThere) return combo;  // Found a winning combo!
+            }
+            return "";
+        }
+    </script>
+</body>
+
+</html>
