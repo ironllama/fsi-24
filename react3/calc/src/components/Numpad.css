@@ -1,15 +1,10 @@
 #numPad {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
 }
 
 .numRow {
-    display: flex;
-    gap: 0.25rem;
-}
-
-.numKey {
-    padding: 1rem 1.25rem;
-    min-width: 1rem;
+  display: flex;
+  gap: 0.25rem;
 }

@@ -10,3 +10,16 @@
   border: 1px solid white;
   border-radius: 10px;
 }
+
+.allKeys {
+  display: flex;
+  gap: 1rem;
+}
+
+.key {
+  font-size: inherit;
+  font-family: inherit;
+  padding: 1rem 1.25rem;
+  min-width: 3.3rem;
+  cursor: pointer;
+}

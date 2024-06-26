@@ -1,12 +1,13 @@
 @font-face {
-    font-family: 'Segmented';
-    src: url('./fonts/curved-seven-segment-2.otf') format('otf');
+  font-family: "Segmented";
+  src: url("./fonts/curved-seven-segment-2.otf") format("otf");
 }
 
 #screen {
-    width: 15rem;
-    padding: 1rem;
-    text-align: right;
-    font-weight: bold;
-    font-family: 'Segmented', sans-serif;
+  width: 12.15rem;
+  height: 1rem;
+  padding: 1rem;
+  text-align: right;
+  font-weight: bold;
+  font-family: "Segmented", sans-serif;
 }
